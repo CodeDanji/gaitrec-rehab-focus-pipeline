@@ -1,0 +1,129 @@
+{
+  "dataset": "gaitrec",
+  "version": "processed-v1",
+  "source_collection_id": 4788012,
+  "source_collection_url": "https://api.figshare.com/v2/collections/4788012/articles?page_size=50",
+  "files": [
+    {
+      "role": "metadata",
+      "required_for": ["vertical-500mb", "smoke-source", "full"],
+      "article_id": 11394657,
+      "file_id": 22062960,
+      "filename": "GRF_metadata.csv",
+      "size_bytes": 629530,
+      "download_url": "https://ndownloader.figshare.com/files/22062960",
+      "target_path": "GRF_metadata.csv",
+      "sha256": null
+    },
+    {
+      "role": "vgrf_left",
+      "required_for": ["vertical-500mb", "smoke-source", "full"],
+      "article_id": 11394819,
+      "file_id": 22063191,
+      "filename": "GRF_F_V_PRO_left.csv",
+      "size_bytes": 136725253,
+      "download_url": "https://ndownloader.figshare.com/files/22063191",
+      "target_path": "GRF_F_V_PRO_left.csv",
+      "sha256": null
+    },
+    {
+      "role": "vgrf_right",
+      "required_for": ["vertical-500mb", "smoke-source", "full"],
+      "article_id": 11394804,
+      "file_id": 22063119,
+      "filename": "GRF_F_V_PRO_right.csv",
+      "size_bytes": 136713924,
+      "download_url": "https://ndownloader.figshare.com/files/22063119",
+      "target_path": "GRF_F_V_PRO_right.csv",
+      "sha256": null
+    },
+    {
+      "role": "ap_grf_left",
+      "required_for": ["smoke-source", "full"],
+      "article_id": 11394816,
+      "file_id": 22063185,
+      "filename": "GRF_F_AP_PRO_left.csv",
+      "size_bytes": 147540140,
+      "download_url": "https://ndownloader.figshare.com/files/22063185",
+      "target_path": "GRF_F_AP_PRO_left.csv",
+      "sha256": null
+    },
+    {
+      "role": "ap_grf_right",
+      "required_for": ["smoke-source", "full"],
+      "article_id": 11394792,
+      "file_id": 22063101,
+      "filename": "GRF_F_AP_PRO_right.csv",
+      "size_bytes": 147554970,
+      "download_url": "https://ndownloader.figshare.com/files/22063101",
+      "target_path": "GRF_F_AP_PRO_right.csv",
+      "sha256": null
+    },
+    {
+      "role": "ml_grf_left",
+      "required_for": ["smoke-v2", "full"],
+      "article_id": 11394801,
+      "file_id": 22063113,
+      "filename": "GRF_F_ML_PRO_left.csv",
+      "size_bytes": 148611612,
+      "download_url": "https://ndownloader.figshare.com/files/22063113",
+      "target_path": "GRF_F_ML_PRO_left.csv",
+      "sha256": null
+    },
+    {
+      "role": "ml_grf_right",
+      "required_for": ["smoke-v2", "full"],
+      "article_id": 11394786,
+      "file_id": 22063086,
+      "filename": "GRF_F_ML_PRO_right.csv",
+      "size_bytes": 148595437,
+      "download_url": "https://ndownloader.figshare.com/files/22063086",
+      "target_path": "GRF_F_ML_PRO_right.csv",
+      "sha256": null
+    },
+    {
+      "role": "cop_ap_left",
+      "required_for": ["smoke-source", "full"],
+      "article_id": 11394768,
+      "file_id": 22062963,
+      "filename": "GRF_COP_AP_PRO_left.csv",
+      "size_bytes": 138556183,
+      "download_url": "https://ndownloader.figshare.com/files/22062963",
+      "target_path": "GRF_COP_AP_PRO_left.csv",
+      "sha256": null
+    },
+    {
+      "role": "cop_ap_right",
+      "required_for": ["smoke-source", "full"],
+      "article_id": 11394765,
+      "file_id": 22062957,
+      "filename": "GRF_COP_AP_PRO_right.csv",
+      "size_bytes": 138508833,
+      "download_url": "https://ndownloader.figshare.com/files/22062957",
+      "target_path": "GRF_COP_AP_PRO_right.csv",
+      "sha256": null
+    },
+    {
+      "role": "cop_ml_left",
+      "required_for": ["smoke-source", "full"],
+      "article_id": 11394783,
+      "file_id": 22063077,
+      "filename": "GRF_COP_ML_PRO_left.csv",
+      "size_bytes": 155283664,
+      "download_url": "https://ndownloader.figshare.com/files/22063077",
+      "target_path": "GRF_COP_ML_PRO_left.csv",
+      "sha256": null
+    },
+    {
+      "role": "cop_ml_right",
+      "required_for": ["smoke-source", "full"],
+      "article_id": 11394780,
+      "file_id": 22063071,
+      "filename": "GRF_COP_ML_PRO_right.csv",
+      "size_bytes": 154923817,
+      "download_url": "https://ndownloader.figshare.com/files/22063071",
+      "target_path": "GRF_COP_ML_PRO_right.csv",
+      "sha256": null
+    }
+  ]
+}

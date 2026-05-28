@@ -1,0 +1,19 @@
+{
+  "dataset": "siat",
+  "version": "llmd-20230404",
+  "source_collection_id": 22776389,
+  "source_collection_url": "https://api.figshare.com/v2/articles/22776389",
+  "files": [
+    {
+      "role": "siat_archive",
+      "required_for": ["siat-inspect"],
+      "article_id": 22776389,
+      "file_id": 40468208,
+      "filename": "SIAT_LLMD20230404.rar",
+      "size_bytes": 8374239382,
+      "download_url": "https://ndownloader.figshare.com/files/40468208",
+      "target_path": "SIAT_LLMD20230404.rar",
+      "sha256": null
+    }
+  ]
+}
