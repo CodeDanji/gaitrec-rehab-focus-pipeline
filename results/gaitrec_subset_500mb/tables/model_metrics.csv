@@ -1,0 +1,4 @@
+model,balanced_accuracy,macro_f1,support,used_sklearn
+dummy,0.2,0.08642775049629088,15006,True
+logistic_regression,0.367034670146974,0.32898515359842373,15006,True
+random_forest,0.48067712170782223,0.4647720497157257,15006,True

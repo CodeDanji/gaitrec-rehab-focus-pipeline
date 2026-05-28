@@ -4,8 +4,8 @@ __pycache__/
 venv/
 .idea/
 data/
-results/
-!results/**/*.md
-!results/**/*.png
-!results/**/*.jpg
+# results/
+# !results/**/*.md
+# !results/**/*.png
+# !results/**/*.jpg
 docs/*.pdf
