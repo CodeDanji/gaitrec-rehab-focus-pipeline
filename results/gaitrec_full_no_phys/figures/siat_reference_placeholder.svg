@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="900" height="180" viewBox="0 0 900 180">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<style>text{font-family:Arial,sans-serif}</style>
+<text x="24" y="38" font-size="22" font-weight="700" fill="#1f2933">Reference figure</text>
+<text x="40" y="100" font-size="18" fill="#1f2933">SIAT reference: add walking EMG/torque sample files to generate phase-level reference curves.</text>
+</svg>
