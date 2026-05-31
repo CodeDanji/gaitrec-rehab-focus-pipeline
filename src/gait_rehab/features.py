@@ -17,8 +17,12 @@ METADATA_ALIASES = {
     "age": ["age"],
     "sex": ["sex", "gender"],
     "height": ["height", "height_cm", "body_height"],
-    "weight": ["weight", "weight_kg", "body_weight", "body_mass"],
+    "body_weight": ["weight", "weight_kg", "body_weight", "body_weight_n"],
+    "body_mass": ["body_mass", "mass", "mass_kg"],
     "shoe_condition": ["shoe_condition", "shod_condition", "shoe", "shoes", "footwear"],
+    "shoe_size": ["shoe_size", "size"],
+    "orthopedic_insole": ["orthopedic_insole", "insole", "orthopedic_shoe"],
+    "session_type": ["session_type", "type"],
 }
 
 SIGNAL_KEYS = [
@@ -34,20 +38,7 @@ SIGNAL_KEYS = [
     "cop_ml_right",
 ]
 
-FEATURE_COLUMNS = [
-    "vgrf_peak_aff",
-    "vgrf_peak_unaff",
-    "vgrf_peak_asym",
-    "loading_rate_asym",
-    "ap_braking_impulse_asym",
-    "ap_propulsion_impulse_asym",
-    "push_off_index",
-    "cop_ap_range_aff",
-    "cop_ml_range_aff",
-    "cop_path_length_aff",
-    "cop_ap_range_asym",
-    "cop_ml_range_asym",
-]
+FEATURE_COLUMNS = []
 
 
 @dataclass(frozen=True)
@@ -60,8 +51,12 @@ class TrialSignals:
     age: float | None
     sex: str | None
     height: float | None
-    weight: float | None
+    body_weight: float | None
+    body_mass: float | None
     shoe_condition: str | None
+    shoe_size: float | None
+    orthopedic_insole: str | None
+    session_type: str | None
     vgrf: dict[str, np.ndarray]
     ap_grf: dict[str, np.ndarray]
     ml_grf: dict[str, np.ndarray]
@@ -153,9 +148,9 @@ def normalize_metadata_columns(metadata: pd.DataFrame) -> pd.DataFrame:
         df["trial_id"] = df.groupby("subject_id").cumcount().astype(str)
 
     if "affected_side" in df.columns:
-        df["affected_side"] = df["affected_side"].map(_normalize_side).fillna("left")
+        df["affected_side"] = df["affected_side"].map(_normalize_side)
     else:
-        df["affected_side"] = "left"
+        df["affected_side"] = "unknown"
 
     if "label" in df.columns:
         df["label"] = df["label"].map(normalize_label)
@@ -184,11 +179,15 @@ def normalize_label(value: object) -> str:
 
 def _normalize_side(value: object) -> str:
     text = str(value).strip().lower()
-    if text in {"l", "left", "left side", "affected left", "1"}:
+    if text in {"0.0", "0", "l", "left", "left side", "affected left"}:
         return "left"
-    if text in {"r", "right", "right side", "affected right", "2"}:
+    if text in {"1.0", "1", "r", "right", "right side", "affected right"}:
         return "right"
-    return text if text in {"left", "right"} else "left"
+    if text in {"2.0", "2", "b", "both", "both sides"}:
+        return "both"
+    if text in {"left", "right", "both"}:
+        return text
+    return "unknown"
 
 
 def validate_feature_input(metadata: pd.DataFrame, signals: dict[str, pd.DataFrame]) -> None:
@@ -205,61 +204,164 @@ def validate_feature_input(metadata: pd.DataFrame, signals: dict[str, pd.DataFra
 
 
 def extract_gait_features(metadata: pd.DataFrame, signals: dict[str, pd.DataFrame]) -> pd.DataFrame:
+    import warnings
     validate_feature_input(metadata, signals)
     metadata = normalize_metadata_columns(metadata)
     rows: list[dict[str, object]] = []
 
-    for trial in iterate_trials(metadata, signals):
-        aff = trial.affected_side
-        unaff = "right" if aff == "left" else "left"
+    def sym_mag(l: float, r: float) -> float:
+        if pd.isna(l) or pd.isna(r):
+            return float("nan")
+        denom = (abs(l) + abs(r)) / 2.0
+        return float(abs(l - r) / denom) if denom > 0 else 0.0
 
-        vgrf_peak_aff = peak(trial.vgrf[aff])
-        vgrf_peak_unaff = peak(trial.vgrf[unaff])
-        loading_aff = loading_rate(trial.vgrf[aff])
-        loading_unaff = loading_rate(trial.vgrf[unaff])
-        brake_aff = braking_impulse(trial.ap_grf[aff])
-        brake_unaff = braking_impulse(trial.ap_grf[unaff])
-        prop_aff = propulsion_impulse(trial.ap_grf[aff])
-        prop_unaff = propulsion_impulse(trial.ap_grf[unaff])
-        cop_ap_range_aff = signal_range(trial.cop_ap[aff])
-        cop_ml_range_aff = signal_range(trial.cop_ml[aff])
-        cop_ap_range_unaff = signal_range(trial.cop_ap[unaff])
-        cop_ml_range_unaff = signal_range(trial.cop_ml[unaff])
-        cop_path_aff = (
-            cop_path_length(trial.cop_ap[aff], trial.cop_ml[aff])
-            if trial.cop_ap[aff].size and trial.cop_ml[aff].size
-            else float("nan")
-        )
+    with warnings.catch_warnings():
+        warnings.simplefilter("ignore", category=RuntimeWarning)
+        for trial in iterate_trials(metadata, signals):
+            aff = trial.affected_side
+        
+            # Base features per side
+            vgrf_peak_l = peak(trial.vgrf.get("left", []))
+            vgrf_peak_r = peak(trial.vgrf.get("right", []))
+            loading_l = loading_rate(trial.vgrf.get("left", []))
+            loading_r = loading_rate(trial.vgrf.get("right", []))
+            brake_l = braking_impulse(trial.ap_grf.get("left", []))
+            brake_r = braking_impulse(trial.ap_grf.get("right", []))
+            prop_l = propulsion_impulse(trial.ap_grf.get("left", []))
+            prop_r = propulsion_impulse(trial.ap_grf.get("right", []))
+            cop_ap_l = signal_range(trial.cop_ap.get("left", []))
+            cop_ap_r = signal_range(trial.cop_ap.get("right", []))
+            cop_ml_l = signal_range(trial.cop_ml.get("left", []))
+            cop_ml_r = signal_range(trial.cop_ml.get("right", []))
+        
+            cop_path_l = cop_path_length(trial.cop_ap.get("left", []), trial.cop_ml.get("left", [])) if trial.cop_ap.get("left", np.array([])).size else float("nan")
+            cop_path_r = cop_path_length(trial.cop_ap.get("right", []), trial.cop_ml.get("right", [])) if trial.cop_ap.get("right", np.array([])).size else float("nan")
 
-        rows.append(
-            {
-                "subject_id": trial.subject_id,
-                "session_id": trial.session_id,
-                "trial_id": trial.trial_id,
-                "label": trial.label,
-                "affected_side": aff,
-                "walking_speed": trial.walking_speed,
-                "age": trial.age,
-                "sex": trial.sex,
-                "height": trial.height,
-                "weight": trial.weight,
-                "shoe_condition": trial.shoe_condition,
-                "vgrf_peak_aff": vgrf_peak_aff,
-                "vgrf_peak_unaff": vgrf_peak_unaff,
-                "vgrf_peak_asym": asymmetry(vgrf_peak_aff, vgrf_peak_unaff),
-                "loading_rate_asym": asymmetry(loading_aff, loading_unaff),
-                "ap_braking_impulse_asym": asymmetry(brake_aff, brake_unaff),
-                "ap_propulsion_impulse_asym": asymmetry(prop_aff, prop_unaff),
-                "push_off_index": prop_aff,
-                "cop_ap_range_aff": cop_ap_range_aff,
-                "cop_ml_range_aff": cop_ml_range_aff,
-                "cop_path_length_aff": cop_path_aff,
-                "cop_ap_range_asym": asymmetry(cop_ap_range_aff, cop_ap_range_unaff),
-                "cop_ml_range_asym": asymmetry(cop_ml_range_aff, cop_ml_range_unaff),
-            }
-        )
+            # Side-neutral features
+            vgrf_peak_mean = np.nanmean([vgrf_peak_l, vgrf_peak_r])
+            vgrf_peak_max = np.nanmax([vgrf_peak_l, vgrf_peak_r])
+            vgrf_peak_diff = abs(vgrf_peak_l - vgrf_peak_r)
+        
+            loading_mean = np.nanmean([loading_l, loading_r])
+            loading_max = np.nanmax([loading_l, loading_r])
+            loading_sym = sym_mag(loading_l, loading_r)
+        
+            brake_mean = np.nanmean([brake_l, brake_r])
+            brake_sym = sym_mag(brake_l, brake_r)
+        
+            prop_mean = np.nanmean([prop_l, prop_r])
+            prop_sym = sym_mag(prop_l, prop_r)
+        
+            cop_ap_mean = np.nanmean([cop_ap_l, cop_ap_r])
+            cop_ap_sym = sym_mag(cop_ap_l, cop_ap_r)
+        
+            cop_ml_mean = np.nanmean([cop_ml_l, cop_ml_r])
+            cop_ml_sym = sym_mag(cop_ml_l, cop_ml_r)
+        
+            cop_path_mean = np.nanmean([cop_path_l, cop_path_r])
 
-    return pd.DataFrame(rows)
+            # Affected-side features (only if left or right is clearly defined)
+            if aff in ["left", "right"]:
+                unaff = "right" if aff == "left" else "left"
+                vgrf_peak_aff = vgrf_peak_l if aff == "left" else vgrf_peak_r
+                vgrf_peak_unaff = vgrf_peak_r if aff == "left" else vgrf_peak_l
+                loading_aff = loading_l if aff == "left" else loading_r
+                loading_unaff = loading_r if aff == "left" else loading_l
+                brake_aff = brake_l if aff == "left" else brake_r
+                brake_unaff = brake_r if aff == "left" else brake_l
+                prop_aff = prop_l if aff == "left" else prop_r
+                prop_unaff = prop_r if aff == "left" else prop_l
+                cop_ap_aff = cop_ap_l if aff == "left" else cop_ap_r
+                cop_ap_unaff = cop_ap_r if aff == "left" else cop_ap_l
+                cop_ml_aff = cop_ml_l if aff == "left" else cop_ml_r
+                cop_ml_unaff = cop_ml_r if aff == "left" else cop_ml_l
+                cop_path_aff = cop_path_l if aff == "left" else cop_path_r
+            else:
+                vgrf_peak_aff = vgrf_peak_unaff = float("nan")
+                loading_aff = loading_unaff = float("nan")
+                brake_aff = brake_unaff = float("nan")
+                prop_aff = prop_unaff = float("nan")
+                cop_ap_aff = cop_ap_unaff = float("nan")
+                cop_ml_aff = cop_ml_unaff = float("nan")
+                cop_path_aff = float("nan")
+
+            # BMI computation (use mass if available, else weight, assuming kg)
+            bmi = float("nan")
+            body_mass_kg = trial.body_mass if trial.body_mass is not None else trial.body_weight
+            if body_mass_kg and trial.height and trial.height > 0:
+                bmi = float(body_mass_kg / ((trial.height / 100.0) ** 2))
+
+            bw_norm = (body_mass_kg * 9.81) if body_mass_kg else 1.0
+
+            def pad_or_truncate(arr, length=101):
+                res = np.full(length, np.nan)
+                n = min(len(arr), length)
+                if n > 0:
+                    res[:n] = arr[:n]
+                return res
+
+            vgrf_l_raw = pad_or_truncate(trial.vgrf.get("left", []))
+            vgrf_r_raw = pad_or_truncate(trial.vgrf.get("right", []))
+            vgrf_l_norm = vgrf_l_raw / bw_norm
+            vgrf_r_norm = vgrf_r_raw / bw_norm
+
+            row_dict = {
+                    "subject_id": trial.subject_id,
+                    "session_id": trial.session_id,
+                    "trial_id": trial.trial_id,
+                    "label": trial.label,
+                    "affected_side": aff,
+                    "walking_speed": trial.walking_speed,
+                    "age": trial.age,
+                    "sex": trial.sex,
+                    "height": trial.height,
+                    "body_weight": trial.body_weight,
+                    "body_mass": trial.body_mass,
+                    "bmi": bmi,
+                    "shoe_condition": trial.shoe_condition,
+                    "shoe_size": trial.shoe_size,
+                    "orthopedic_insole": trial.orthopedic_insole,
+                    "session_type": trial.session_type,
+                
+                    # Side-neutral
+                    "vgrf_peak_mean": float(vgrf_peak_mean),
+                    "vgrf_peak_max": float(vgrf_peak_max),
+                    "vgrf_peak_diff": float(vgrf_peak_diff),
+                    "loading_rate_mean": float(loading_mean),
+                    "loading_rate_max": float(loading_max),
+                    "loading_rate_sym": float(loading_sym),
+                    "ap_braking_impulse_mean": float(brake_mean),
+                    "ap_braking_impulse_sym": float(brake_sym),
+                    "ap_propulsion_impulse_mean": float(prop_mean),
+                    "ap_propulsion_impulse_sym": float(prop_sym),
+                    "push_off_index": float(prop_mean),
+                    "cop_ap_range_mean": float(cop_ap_mean),
+                    "cop_ap_range_sym": float(cop_ap_sym),
+                    "cop_ml_range_mean": float(cop_ml_mean),
+                    "cop_ml_range_sym": float(cop_ml_sym),
+                    "cop_path_length_mean": float(cop_path_mean),
+
+                    # Affected-side
+                    "vgrf_peak_aff": vgrf_peak_aff,
+                    "vgrf_peak_unaff": vgrf_peak_unaff,
+                    "vgrf_peak_asym": asymmetry(vgrf_peak_aff, vgrf_peak_unaff),
+                    "loading_rate_asym": asymmetry(loading_aff, loading_unaff),
+                    "ap_braking_impulse_asym": asymmetry(brake_aff, brake_unaff),
+                    "ap_propulsion_impulse_asym": asymmetry(prop_aff, prop_unaff),
+                    "cop_ap_range_aff": cop_ap_aff,
+                    "cop_ml_range_aff": cop_ml_aff,
+                    "cop_path_length_aff": cop_path_aff,
+                    "cop_ap_range_asym": asymmetry(cop_ap_aff, cop_ap_unaff),
+                    "cop_ml_range_asym": asymmetry(cop_ml_aff, cop_ml_unaff),
+                }
+
+            for i in range(101):
+                row_dict[f"vgrf_left_{i}"] = float(vgrf_l_norm[i])
+                row_dict[f"vgrf_right_{i}"] = float(vgrf_r_norm[i])
+
+            rows.append(row_dict)
+
+        return pd.DataFrame(rows)
 
 
 def iterate_trials(metadata: pd.DataFrame, signals: dict[str, pd.DataFrame]) -> Iterable[TrialSignals]:
@@ -276,12 +378,15 @@ def iterate_trials(metadata: pd.DataFrame, signals: dict[str, pd.DataFrame]) -> 
     metadata_lookup = _build_metadata_lookup(normalized_metadata)
 
     for _, left_row in left_vgrf.iterrows():
-        subject_id = _key_str(left_row["subject_id"])
-        session_id = _key_str(left_row.get("session_id")) if "session_id" in left_row.index else None
-        raw_trial_id = _key_str(left_row.get("trial_id")) if "trial_id" in left_row.index else "0"
-        trial_id = _compose_trial_id(session_id, raw_trial_id)
-        metadata_row = _lookup_metadata_row(metadata_lookup, subject_id, session_id, raw_trial_id)
-        right_row = _lookup_signal_row(right_lookup, subject_id, session_id, raw_trial_id)
+        try:
+            subject_id = _key_str(left_row["subject_id"])
+            session_id = _key_str(left_row.get("session_id")) if "session_id" in left_row.index else None
+            raw_trial_id = _key_str(left_row.get("trial_id")) if "trial_id" in left_row.index else "0"
+            trial_id = _compose_trial_id(session_id, raw_trial_id)
+            metadata_row = _lookup_metadata_row(metadata_lookup, subject_id, session_id, raw_trial_id)
+            right_row = _lookup_signal_row(right_lookup, subject_id, session_id, raw_trial_id)
+        except KeyError:
+            continue
 
         yield TrialSignals(
             subject_id=subject_id,
@@ -293,8 +398,12 @@ def iterate_trials(metadata: pd.DataFrame, signals: dict[str, pd.DataFrame]) -> 
             age=_optional_float(metadata_row.get("age")),
             sex=_optional_str(metadata_row.get("sex")),
             height=_optional_float(metadata_row.get("height")),
-            weight=_optional_float(metadata_row.get("weight")),
+            body_weight=_optional_float(metadata_row.get("body_weight")),
+            body_mass=_optional_float(metadata_row.get("body_mass")),
             shoe_condition=_optional_str(metadata_row.get("shoe_condition")),
+            shoe_size=_optional_float(metadata_row.get("shoe_size")),
+            orthopedic_insole=_optional_str(metadata_row.get("orthopedic_insole")),
+            session_type=_optional_str(metadata_row.get("session_type")),
             vgrf={
                 "left": row_signal(left_row),
                 "right": row_signal(right_row),
