@@ -1,0 +1,10 @@
+model,balanced_accuracy,macro_f1,support,used_sklearn,feature_set
+dummy,0.2,0.09342204337575451,62092,True,covariate-only
+logistic_regression,0.4518103026441974,0.32366614529265775,62092,True,covariate-only
+random_forest,0.47810400700904704,0.36562878732404014,62092,True,covariate-only
+dummy,0.2,0.09342204337575451,62092,True,gait-only
+logistic_regression,0.32426896131274907,0.23306642051468246,62092,True,gait-only
+random_forest,0.3151158533082473,0.22229562503641626,62092,True,gait-only
+dummy,0.2,0.09342204337575451,62092,True,gait+covariate
+logistic_regression,0.475015071688472,0.3668877485037503,62092,True,gait+covariate
+random_forest,0.4922494194306335,0.39648202355460704,62092,True,gait+covariate
