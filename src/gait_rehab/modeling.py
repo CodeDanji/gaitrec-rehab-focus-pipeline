@@ -214,6 +214,7 @@ def evaluate_cv(df: pd.DataFrame, feature_columns: list[str], random_state: int 
         from sklearn.base import clone
         y_true_all = []
         y_pred_all = []
+        y_proba_all = []
 
         for train_idx, test_idx in splits:
             model = clone(model_template) if used_sklearn else model_template
@@ -232,9 +233,30 @@ def evaluate_cv(df: pd.DataFrame, feature_columns: list[str], random_state: int 
             
             y_true_all.extend(y_test)
             y_pred_all.extend(y_pred)
+            
+            if len(labels) == 2 and hasattr(model, "predict_proba"):
+                try:
+                    pos_idx = np.where(model.classes_ == labels[1])[0][0]
+                    y_proba_all.extend(model.predict_proba(x_test)[:, pos_idx])
+                except (AttributeError, IndexError):
+                    pass
 
         y_true_all = np.array(y_true_all)
         y_pred_all = np.array(y_pred_all)
+        
+        best_th = 0.5
+        if len(labels) == 2 and len(y_proba_all) == len(y_true_all):
+            y_proba_all = np.array(y_proba_all)
+            best_f1 = -1
+            best_y_pred = y_pred_all
+            for th in np.linspace(0.01, 0.99, 99):
+                y_pred_th = np.where(y_proba_all >= th, labels[1], labels[0])
+                f1 = macro_f1(y_true_all, y_pred_th, labels=labels)
+                if f1 > best_f1:
+                    best_f1 = f1
+                    best_th = float(th)
+                    best_y_pred = y_pred_th
+            y_pred_all = best_y_pred
         
         matrix = confusion_matrix_frame(y_true_all, y_pred_all, labels=labels)
         report = classification_report_frame(y_true_all, y_pred_all, labels=labels)
@@ -245,6 +267,7 @@ def evaluate_cv(df: pd.DataFrame, feature_columns: list[str], random_state: int 
             "macro_f1": macro_f1(y_true_all, y_pred_all, labels=labels),
             "support": len(y_true_all),
             "used_sklearn": used_sklearn,
+            "optimal_threshold": best_th if len(labels) == 2 else None,
         })
         reports[model_name] = report
         reports[f"{model_name}_confusion_matrix"] = matrix
