@@ -200,7 +200,7 @@ def run_evaluation_for_task(df: pd.DataFrame, out_dir: Path, random_state: int, 
     out_dir.mkdir(parents=True, exist_ok=True)
     metrics_all = []
     
-    for feature_set_name in ["covariate-only", "gait-only", "gait+covariate"]:
+    for feature_set_name in ["gait-only", "covariate-only", "gait+covariate"]:
         feature_cols = get_feature_set(df, feature_set_name, use_affected=use_affected)
         if not feature_cols:
             continue
@@ -211,6 +211,9 @@ def run_evaluation_for_task(df: pd.DataFrame, out_dir: Path, random_state: int, 
             
         metrics["feature_set"] = feature_set_name
         metrics_all.append(metrics)
+        
+        # Save incrementally so we can see intermediate results
+        pd.concat(metrics_all, ignore_index=True).to_csv(out_dir / "model_metrics.csv", index=False)
         
         # Save specific confusion matrices
         for name, matrix in reports.items():
