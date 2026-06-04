@@ -85,6 +85,9 @@ def signal_range(values: Iterable[float]) -> float:
 
 
 def impulse(values: Iterable[float], dt: float = 1.0) -> float:
+    """Computes the integral (area under curve) over the normalized frames.
+    Note: dt is 1.0 frame by default, so this is a normalized area, not true physical impulse (N*s).
+    """
     arr = clean_signal(values)
     if arr.size == 0:
         return float("nan")
@@ -92,6 +95,7 @@ def impulse(values: Iterable[float], dt: float = 1.0) -> float:
 
 
 def braking_impulse(values: Iterable[float], dt: float = 1.0) -> float:
+    """Computes the braking integral over the normalized frames."""
     arr = clean_signal(values)
     if arr.size == 0:
         return float("nan")
@@ -99,6 +103,7 @@ def braking_impulse(values: Iterable[float], dt: float = 1.0) -> float:
 
 
 def propulsion_impulse(values: Iterable[float], dt: float = 1.0) -> float:
+    """Computes the propulsion integral over the normalized frames."""
     arr = clean_signal(values)
     if arr.size == 0:
         return float("nan")
@@ -106,10 +111,14 @@ def propulsion_impulse(values: Iterable[float], dt: float = 1.0) -> float:
 
 
 def loading_rate(values: Iterable[float]) -> float:
+    """Computes the maximum derivative in the early stance phase (first 20%)."""
     arr = clean_signal(values)
     if arr.size < 2:
         return float("nan")
-    return float(np.nanmax(arr) - arr[0])
+    n_early = max(2, int(arr.size * 0.2))
+    early_arr = arr[:n_early]
+    # Max difference between consecutive frames in early stance
+    return float(np.nanmax(np.diff(early_arr)))
 
 
 def asymmetry(affected_value: float, unaffected_value: float) -> float:
@@ -285,13 +294,16 @@ def extract_gait_features(metadata: pd.DataFrame, signals: dict[str, pd.DataFram
                 cop_ml_aff = cop_ml_unaff = float("nan")
                 cop_path_aff = float("nan")
 
-            # BMI computation (use mass if available, else weight, assuming kg)
+            # BMI computation (use mass if available, else convert weight from Newtons to kg)
             bmi = float("nan")
-            body_mass_kg = trial.body_mass if trial.body_mass is not None else trial.body_weight
+            body_mass_kg = trial.body_mass
+            if body_mass_kg is None and trial.body_weight is not None:
+                body_mass_kg = trial.body_weight / 9.81
             if body_mass_kg and trial.height and trial.height > 0:
                 bmi = float(body_mass_kg / ((trial.height / 100.0) ** 2))
 
-            bw_norm = (body_mass_kg * 9.81) if body_mass_kg else 1.0
+            # The GaitRec PRO data is already amplitude-normalized to multiples of body weight.
+            # Do NOT divide by bw_norm again, which would cause double normalization.
 
             def pad_or_truncate(arr, length=101):
                 res = np.full(length, np.nan)
@@ -300,10 +312,8 @@ def extract_gait_features(metadata: pd.DataFrame, signals: dict[str, pd.DataFram
                     res[:n] = arr[:n]
                 return res
 
-            vgrf_l_raw = pad_or_truncate(trial.vgrf.get("left", []))
-            vgrf_r_raw = pad_or_truncate(trial.vgrf.get("right", []))
-            vgrf_l_norm = vgrf_l_raw / bw_norm
-            vgrf_r_norm = vgrf_r_raw / bw_norm
+            vgrf_l_norm = pad_or_truncate(trial.vgrf.get("left", []))
+            vgrf_r_norm = pad_or_truncate(trial.vgrf.get("right", []))
 
             row_dict = {
                     "subject_id": trial.subject_id,

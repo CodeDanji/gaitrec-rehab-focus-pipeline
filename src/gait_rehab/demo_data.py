@@ -42,7 +42,8 @@ def make_demo_gaitrec(
                         "age": age,
                         "sex": sex,
                         "height": height,
-                        "weight": weight,
+                        "body_mass": weight,
+                        "body_weight": weight * 9.81,
                         "shoe_condition": "shod" if trial_number % 2 == 0 else "barefoot",
                     }
                 )
