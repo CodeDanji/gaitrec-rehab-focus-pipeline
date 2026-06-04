@@ -1,0 +1,2 @@
+model,balanced_accuracy,macro_f1,support,used_sklearn,optimal_threshold,feature_set
+1d_cnn,0.2691612662769656,0.2637578323526615,5554,False,,vgrf_waveform

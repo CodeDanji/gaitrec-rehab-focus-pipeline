@@ -65,18 +65,18 @@ class GaitCNN1D(nn.Module):
             nn.ReLU()
         )
         
-        self.gap = nn.AdaptiveAvgPool1d(1)
+        self.flatten = nn.Flatten()
         
         self.classifier = nn.Sequential(
-            nn.Linear(64, 32),
+            nn.Linear(64 * 25, 128),
             nn.ReLU(),
             nn.Dropout(p=0.5),  # Mitigate overfitting to noise
-            nn.Linear(32, num_classes)
+            nn.Linear(128, num_classes)
         )
         
     def forward(self, x):
         x = self.features(x)
-        x = self.gap(x).squeeze(-1)
+        x = self.flatten(x)
         x = self.classifier(x)
         return x
 
@@ -108,7 +108,18 @@ def train_cnn_cv(df: pd.DataFrame, num_epochs=30, batch_size=32, lr=0.001, rando
         torch.manual_seed(random_state)
         
         model = GaitCNN1D(num_classes=len(unique_labels)).to(device)
-        criterion = nn.CrossEntropyLoss()
+        
+        # Calculate class weights for this fold
+        labels_arr = train_df["label"].values
+        train_y = np.array([label_map[l] for l in labels_arr], dtype=np.int64)
+        class_counts = np.bincount(train_y, minlength=len(unique_labels))
+        total_samples = len(train_y)
+        
+        class_weights = total_samples / (len(unique_labels) * class_counts)
+        class_weights = np.where(class_counts == 0, 1.0, class_weights)
+        class_weights_tensor = torch.tensor(class_weights, dtype=torch.float32).to(device)
+        
+        criterion = nn.CrossEntropyLoss(weight=class_weights_tensor)
         optimizer = optim.Adam(model.parameters(), lr=lr)
         
         best_val_loss = float('inf')
