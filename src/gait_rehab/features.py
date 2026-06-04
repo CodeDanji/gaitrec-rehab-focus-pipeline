@@ -238,13 +238,17 @@ def extract_gait_features(metadata: pd.DataFrame, signals: dict[str, pd.DataFram
             brake_r = braking_impulse(trial.ap_grf.get("right", []))
             prop_l = propulsion_impulse(trial.ap_grf.get("left", []))
             prop_r = propulsion_impulse(trial.ap_grf.get("right", []))
-            cop_ap_l = signal_range(trial.cop_ap.get("left", []))
-            cop_ap_r = signal_range(trial.cop_ap.get("right", []))
-            cop_ml_l = signal_range(trial.cop_ml.get("left", []))
-            cop_ml_r = signal_range(trial.cop_ml.get("right", []))
+            
+            # Normalize COP spatial parameters by height (in meters) to prevent size confounding
+            height_m = (trial.height / 100.0) if trial.height and trial.height > 0 else 1.0
+            
+            cop_ap_l = signal_range(trial.cop_ap.get("left", [])) / height_m
+            cop_ap_r = signal_range(trial.cop_ap.get("right", [])) / height_m
+            cop_ml_l = signal_range(trial.cop_ml.get("left", [])) / height_m
+            cop_ml_r = signal_range(trial.cop_ml.get("right", [])) / height_m
         
-            cop_path_l = cop_path_length(trial.cop_ap.get("left", []), trial.cop_ml.get("left", [])) if trial.cop_ap.get("left", np.array([])).size else float("nan")
-            cop_path_r = cop_path_length(trial.cop_ap.get("right", []), trial.cop_ml.get("right", [])) if trial.cop_ap.get("right", np.array([])).size else float("nan")
+            cop_path_l = (cop_path_length(trial.cop_ap.get("left", []), trial.cop_ml.get("left", [])) / height_m) if trial.cop_ap.get("left", np.array([])).size else float("nan")
+            cop_path_r = (cop_path_length(trial.cop_ap.get("right", []), trial.cop_ml.get("right", [])) / height_m) if trial.cop_ap.get("right", np.array([])).size else float("nan")
 
             # Side-neutral features
             vgrf_peak_mean = np.nanmean([vgrf_peak_l, vgrf_peak_r])
