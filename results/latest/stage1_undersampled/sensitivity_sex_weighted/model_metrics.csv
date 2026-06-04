@@ -1,0 +1,10 @@
+model,balanced_accuracy,macro_f1,support,used_sklearn,optimal_threshold,feature_set
+dummy,0.5,0.33707011210336313,3489,True,0.01,covariate-only
+logistic_regression,0.6549835492257783,0.654617580467111,3489,True,0.46,covariate-only
+random_forest,0.7132989965192068,0.7095891013938661,3489,True,0.6,covariate-only
+dummy,0.5,0.33707011210336313,3489,True,0.01,gait-only
+logistic_regression,0.8812673176856505,0.8807426469863244,3489,True,0.53,gait-only
+random_forest,0.8777286756222863,0.876530336797543,3489,True,0.51,gait-only
+dummy,0.5,0.33707011210336313,3489,True,0.01,gait+covariate
+logistic_regression,0.8682350505027265,0.8678641976677844,3489,True,0.49,gait+covariate
+random_forest,0.8648321560867864,0.8636057366944455,3489,True,0.51,gait+covariate
