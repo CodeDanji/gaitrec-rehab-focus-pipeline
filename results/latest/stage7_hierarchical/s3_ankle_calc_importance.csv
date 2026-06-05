@@ -1,0 +1,10 @@
+Type,Feature,F1_Drop
+CNN Waveform,20-60% (Mid/Terminal),0.27709452336619644
+CNN Waveform,0-20% (Initial/Loading),0.2248474107400874
+CNN Waveform,60-100% (Pre/Swing),0.20962980774534556
+RF Scalar,cop_ap_range_aff,0.005327473058312382
+RF Scalar,vgrf_peak_unaff,0.0033386343136418972
+RF Scalar,loading_rate_asym,0.001223794344460405
+RF Scalar,push_off_index,0.00046337110525873637
+RF Scalar,vgrf_peak_aff,0.00023680802231340614
+RF Scalar,walking_speed,0.0
