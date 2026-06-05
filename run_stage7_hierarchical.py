@@ -282,7 +282,7 @@ def main():
     y_rf_s1 = np.array([label_map_s1[lbl] for lbl in df_s1["label"].values])
     subjects_s1 = df_s1["subject_id"].values
     
-    trues_s1, preds_s1, f1_s1, _, _, _ = train_and_eval_ensemble(
+    trues_s1, preds_s1, f1_s1, models_rf_s1, models_cnn_s1, val_datasets_s1 = train_and_eval_ensemble(
         df_s1, unique_labels_s1, label_map_s1, subjects_s1, rf_feature_cols, X_rf_s1, y_rf_s1, device, logger, apply_weights=False
     )
     
@@ -296,6 +296,20 @@ def main():
     plt.title(f'Upper vs Lower Confusion Matrix (F1: {f1_s1:.2f})')
     plt.tight_layout()
     plt.savefig(out_dir / "s1_upper_lower_cm.svg")
+    plt.close()
+    
+    # Feature Importance for Stage 1
+    logger.info("\n========== STAGE 1: Feature Importance ==========")
+    imp_df_s1 = calculate_importance(models_rf_s1, models_cnn_s1, val_datasets_s1, rf_feature_cols, unique_labels_s1, device, logger)
+    imp_df_s1 = imp_df_s1.sort_values(by='F1_Drop', ascending=False)
+    imp_df_s1.to_csv(out_dir / "s1_upper_lower_importance.csv", index=False)
+    
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=imp_df_s1, x='F1_Drop', y='Feature', hue='Type', dodge=False)
+    plt.title('Soft Ensemble Feature Importance (Upper vs Lower)')
+    plt.xlabel('Macro F1 Drop (Baseline - Permuted)')
+    plt.tight_layout()
+    plt.savefig(out_dir / "s1_upper_lower_importance.svg")
     plt.close()
     
     # ==========================================
