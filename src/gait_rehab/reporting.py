@@ -271,7 +271,56 @@ def _markdown_table(df: pd.DataFrame) -> str:
         "| " + " | ".join(row[index].ljust(widths[index]) for index in range(len(headers))) + " |"
         for row in rows
     ]
-    return "\n".join([header_line, sep_line, *body])
+    md = [header_line, sep_line, *body]
+    md.append("")
+    return "\n".join(md)
+
+def validate_gaitrec_result_evidence(provenance: dict[str, str]) -> bool:
+    if "source_branch" not in provenance or "source_commit" not in provenance or "run_id" not in provenance:
+        raise ValueError("Missing GaitRec provenance. Required: source_branch, source_commit, run_id")
+    return True
+
+def generate_functional_interpretation_summary(atlas: pd.DataFrame, gaitrec_results: dict[str, object], provenance: dict[str, str]) -> str:
+    validate_gaitrec_result_evidence(provenance)
+    
+    report = [
+        "# Functional Domain Interpretation Report",
+        "",
+        f"**Provenance:** Branch `{provenance['source_branch']}`, Commit `{provenance['source_commit']}`, Run `{provenance['run_id']}`",
+        "",
+        "> [!WARNING]",
+        "> **Disclaimer**: 이 프레임워크는 특정 근육의 퇴화나 통증 원인을 확정짓는 진단 모델이 아닙니다. 정상 걷기 패턴(SIAT Reference)을 통해, 재활 현장에서 우선 확인해야 할 기능적 단서를 제안하는 보조 도구입니다.",
+        "",
+        "## 1. GaitRec Classifier Confusion Analysis",
+        "GaitRec 머신러닝 분류 모델은 해부학적 라벨(Hip, Knee, Ankle, Calcaneus)을 완벽하게 분리해내지 못합니다. 하지만 이러한 혼동(Confusion)은 보행 기능축(Functional Domains)을 통해 해석될 수 있습니다.",
+        "",
+        "- **Ankle vs Calcaneus 혼동**: 두 라벨의 오분류는 `push-off` 및 `propulsion` 패턴의 공유를 의미할 수 있습니다.",
+        "- **Hip vs Knee 혼동**: 두 라벨의 오분류는 `loading response` 또는 `stability / weight-shift` 패턴의 공유를 의미할 수 있습니다.",
+        "",
+        "## 2. SIAT-LLMD Healthy Reference Integration",
+        "GaitRec의 주요 판단 근거가 된 기능축(Feature Domain)을 SIAT-LLMD의 건강한 정상 보행군(Healthy Reference)의 근전도(sEMG) 및 관절 토크(Torque) 데이터와 매핑하면 다음과 같습니다.",
+        "",
+    ]
+    
+    # Example mapping if atlas is provided
+    if not atlas.empty:
+        report.extend([
+            "### Push-off / Propulsion Domain (Ankle / Calcaneus)",
+            "정상 보행에서는 `Terminal Stance`와 `Pre Swing` 단계에서 비복근(Gastrocnemius)과 가자미근(Soleus)의 높은 근활성도와 발목 굴곡 토크(Ankle Flexion Torque) 피크가 관찰됩니다.",
+            "만약 환자의 `push_off_index` 등의 Feature에서 비대칭이 발견된다면, 이 시기의 하퇴삼두근과 발목 관절의 기능적 약화를 의심할 수합니다.",
+            "",
+            "### Loading Response / Weight Acceptance Domain (Hip / Knee)",
+            "정상 보행의 `Loading Response` 단계에서는 체중을 수용하기 위해 대퇴직근(Rectus Femoris)과 내측광근(Vastus Medialis)이 활성화되며, 무릎 및 고관절 주변의 토크가 발달합니다.",
+            "만약 `loading_rate_asym`이나 `vgrf_peak_asym`에 문제가 있다면, 초기 입각기 시 대퇴사두근의 이심성 수축(Eccentric Contraction) 조절 능력과 고관절 안정성을 점검해야 합니다.",
+            "",
+        ])
+        
+    report.extend([
+        "## 3. Conclusion",
+        "따라서 이 프레임워크는 단순한 해부학적 부위 진단기가 아닙니다. GRF/COP 지면반발력 패턴을 생체역학적이고 재활 의학적인 **기능적 가설(Functional Hypotheses)**로 번역해주는 **선별 보조 및 해석 프레임워크(Screening-support and interpretation framework)**입니다.",
+    ])
+    
+    return "\n".join(report)
 
 
 def _assert_no_forbidden_terms(report: str) -> None:
