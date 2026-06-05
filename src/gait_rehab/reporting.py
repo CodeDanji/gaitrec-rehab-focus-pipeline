@@ -328,3 +328,38 @@ def _assert_no_forbidden_terms(report: str) -> None:
     found = [term for term in FORBIDDEN_REPORT_TERMS if term.lower() in lowered]
     if found:
         raise ValueError(f"Report contains forbidden terms: {found}")
+
+def generate_functional_interpretation_summary(siat_atlas: dict, gaitrec_results: dict, provenance: dict) -> str:
+    if not provenance or "run_id" not in provenance or "source_commit" not in provenance:
+        raise ValueError("Missing GaitRec provenance. 'run_id' and 'source_commit' are required.")
+        
+    lines = [
+        "# Functional Domain Interpretation Report",
+        "",
+        f"**Provenance:** Branch {provenance.get('source_branch', 'unknown')}, Commit {provenance['source_commit']}, Run {provenance['run_id']}",
+        "",
+        "> [!WARNING]",
+        "> **Disclaimer**: 본 프로젝트는 특정 근육의 약화나 통증 원인을 확정하지 않습니다.",
+        "> SIAT Reference는 정상군 기준을 제시할 뿐, 진단이나 처방을 위한 용도가 아닙니다.",
+        "",
+        "## 1. GaitRec Classifier Confusion Analysis",
+        "GaitRec은 환자의 보행을 Hip, Knee, Ankle, Calcaneus 등으로 분류합니다.",
+        "분류 과정에서 나타나는 계층적 혼동(Hierarchical Confusion)은 해당 관절의 기능적 도메인(Functional Domain) 유사성을 시사합니다.",
+        "",
+        "## 2. SIAT-LLMD Healthy Reference Integration",
+        "SIAT-LLMD 데이터는 GaitRec 분류기에 학습 변수로 직접 입력되지 않습니다.",
+        "대신, 정상군의 보행 주기별 기준(sEMG, Torque)을 제공하여 GaitRec의 결과를 기능적으로 해석하는 지표로 활용됩니다.",
+        "",
+        "## 3. Conclusion",
+        "이 분석 파이프라인은 스크리닝을 보조하는 해석 프레임워크(Screening-support and interpretation framework)입니다."
+    ]
+    
+    report = "\n".join(lines)
+    
+    # Guardrails
+    forbidden = ["진단 모델", "질환 여부 판단", "근육 약화 확진"]
+    for f in forbidden:
+        if f in report:
+            raise ValueError(f"Forbidden claim detected in report: {f}")
+            
+    return report

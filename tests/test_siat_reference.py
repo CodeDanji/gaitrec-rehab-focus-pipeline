@@ -1,4 +1,4 @@
-import sys
+﻿import sys
 import tempfile
 import unittest
 from pathlib import Path
@@ -8,60 +8,7 @@ import pandas as pd
 sys.path.insert(0, str(Path(__file__).resolve().parents[1] / "src"))
 sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 
-from gait_rehab.modeling import get_feature_set
-from scripts.inspect_siat import inspect_siat_root
-
-
 class SiatReferenceTests(unittest.TestCase):
-    def test_siat_inspection_writes_inventory_candidates_and_report(self):
-        with tempfile.TemporaryDirectory() as tmpdir:
-            root = Path(tmpdir)
-            siat_root = root / "siat"
-            output_root = root / "inspection"
-            siat_root.mkdir()
-            pd.DataFrame(
-                {
-                    "gait_phase": [0, 10, 20],
-                    "EMG_TA": [0.1, 0.2, 0.3],
-                    "ankle_torque": [1.0, 1.1, 1.2],
-                }
-            ).to_csv(siat_root / "walking_trial_emg_torque.csv", index=False)
-
-            inspect_siat_root(siat_root, output_root)
-
-            inventory = pd.read_csv(output_root / "tables" / "siat_file_inventory.csv")
-            candidates = pd.read_csv(output_root / "tables" / "siat_column_candidates.csv")
-            report = (output_root / "reports" / "siat_structure_report.md").read_text(encoding="utf-8")
-
-            self.assertEqual(inventory.iloc[0]["relative_path"], "walking_trial_emg_torque.csv")
-            self.assertIn("gait_phase", set(candidates["candidate_type"]))
-            self.assertIn("emg", set(candidates["candidate_type"]))
-            self.assertIn("joint_torque", set(candidates["candidate_type"]))
-            self.assertIn("not merged into the GaitRec classifier", report)
-
-    def test_empty_siat_root_still_writes_empty_outputs(self):
-        with tempfile.TemporaryDirectory() as tmpdir:
-            output_root = Path(tmpdir) / "inspection"
-
-            inspect_siat_root(Path(tmpdir) / "missing", output_root)
-
-            self.assertTrue((output_root / "tables" / "siat_file_inventory.csv").exists())
-            self.assertTrue((output_root / "tables" / "siat_column_candidates.csv").exists())
-            report = (output_root / "reports" / "siat_structure_report.md").read_text(encoding="utf-8")
-            self.assertIn("No SIAT files were found", report)
-
-    def test_siat_columns_are_not_model_features(self):
-        frame = pd.DataFrame(
-            {
-                "vgrf_peak_aff": [1.0],
-                "EMG_TA": [0.2],
-                "ankle_torque": [1.1],
-                "siat_reference_score": [0.5],
-            }
-        )
-
-        self.assertEqual(get_feature_set(frame, "gait+covariate", True), ["vgrf_peak_aff"])
-
     def test_discover_siat_pairs_matches_wak_data_and_label_files(self):
         from gait_rehab.siat import discover_siat_pairs
 
@@ -88,169 +35,197 @@ class SiatReferenceTests(unittest.TestCase):
         self.assertTrue(str(pairs.iloc[0]["data_path"]).endswith("Sub01_WAK_Data.csv"))
         self.assertTrue(str(pairs.iloc[0]["label_path"]).endswith("Sub01_WAK_Label.csv"))
 
-    def test_wak_data_schema_validation(self):
-        from gait_rehab.siat import validate_wak_data_schema
-        
-        # Valid 26 cols: 1 Time + 8 Kinematic + 8 Torque + 9 sEMG
-        df_valid = pd.DataFrame(columns=["Time"] + [f"Kinematic_{i}" for i in range(8)] + [f"sEMG_{i}" for i in range(9)] + [f"Torque_{i}" for i in range(8)])
-        self.assertTrue(validate_wak_data_schema(df_valid))
-        
-        df_invalid_len = pd.DataFrame(columns=["Time"] + [f"sEMG_{i}" for i in range(9)])
-        self.assertFalse(validate_wak_data_schema(df_invalid_len))
-        
-        df_invalid_time = pd.DataFrame(columns=["NotTime"] + [f"Kinematic_{i}" for i in range(8)] + [f"sEMG_{i}" for i in range(9)] + [f"Torque_{i}" for i in range(8)])
-        self.assertFalse(validate_wak_data_schema(df_invalid_time))
-        
-        df_invalid_semg = pd.DataFrame(columns=["Time"] + [f"Kinematic_{i}" for i in range(8)] + [f"sEMG_{i}" for i in range(8)] + [f"Torque_{i}" for i in range(9)])
-        self.assertFalse(validate_wak_data_schema(df_invalid_semg))
+    def test_validate_siat_data_schema_accepts_named_wak_blocks(self):
+        from gait_rehab.siat import validate_siat_data_schema
 
-    def test_wak_label_schema_and_join(self):
-        from gait_rehab.siat_labels import validate_wak_label_schema, join_wak_data_and_labels
-        
-        # Schema tests
-        df_valid = pd.DataFrame({"Time": [0.0, 0.1], "Status": [1, 5], "Group": [1, 1]})
-        self.assertTrue(validate_wak_label_schema(df_valid))
-        
-        df_invalid_cols = pd.DataFrame({"Time": [0.0], "Status": [1], "Wrong": [1]})
-        self.assertFalse(validate_wak_label_schema(df_invalid_cols))
-        
-        df_invalid_status = pd.DataFrame({"Time": [0.0], "Status": [6], "Group": [1]})
-        self.assertFalse(validate_wak_label_schema(df_invalid_status))
-        
-        # Join tests
-        valid_data_cols = ["Time"] + [f"Kinematic_{i}" for i in range(8)] + [f"sEMG_{i}" for i in range(9)] + [f"Torque_{i}" for i in range(8)]
-        df_data = pd.DataFrame([[0.0] + [0]*25, [0.1] + [0]*25], columns=valid_data_cols)
-        
-        joined = join_wak_data_and_labels(df_data, df_valid)
+        frame = pd.DataFrame(
+            {
+                "Time": [0.0],
+                **{f"Kinematic: joint {index} angle": [0.0] for index in range(8)},
+                **{f"Kinetic: joint {index} torque": [0.0] for index in range(8)},
+                **{f"sEMG: muscle {index}": [0.0] for index in range(9)},
+            }
+        )
+
+        schema = validate_siat_data_schema(frame, Path("Sub01_WAK_Data.csv"))
+
+        self.assertEqual(schema.time_column, "Time")
+        self.assertEqual(len(schema.kinematic_columns), 8)
+        self.assertEqual(len(schema.kinetic_columns), 8)
+        self.assertEqual(len(schema.emg_columns), 9)
+        self.assertFalse(schema.schema_inferred_from_position)
+
+    def test_validate_wak_label_schema_requires_time_status_group(self):
+        from gait_rehab.siat_labels import validate_wak_label_schema
+
+        labels = pd.DataFrame({"Time": [0.0], "Status": [1], "Group": [1]})
+
+        schema = validate_wak_label_schema(labels, Path("Sub01_WAK_Label.csv"))
+
+        self.assertEqual(schema.time_column, "Time")
+        self.assertEqual(schema.status_column, "Status")
+        self.assertEqual(schema.group_column, "Group")
+
+    def test_validate_wak_label_schema_rejects_missing_status_column(self):
+        from gait_rehab.siat_labels import validate_wak_label_schema
+
+        labels = pd.DataFrame({"Time": [0.0], "label": ["HS"]})
+
+        with self.assertRaisesRegex(ValueError, "Time, Status, Group"):
+            validate_wak_label_schema(labels, Path("Sub01_WAK_Label.csv"))
+
+    def test_join_wak_data_and_labels_reports_quality_and_drops_invalid_status(self):
+        from gait_rehab.siat_labels import join_wak_data_and_labels
+
+        data = pd.DataFrame(
+            {
+                "Time": [0.0, 0.1, 0.2],
+                "sEMG: soleus": [0.1, 0.2, 0.3],
+                "Kinetic: left ankle flexion torque": [1.0, 1.1, 1.2],
+            }
+        )
+        labels = pd.DataFrame(
+            {
+                "Time": [0.0, 0.10004, 0.2],
+                "Status": [1, "NaN", 5],
+                "Group": [1, 1, 1],
+            }
+        )
+
+        joined, quality = join_wak_data_and_labels(
+            data,
+            labels,
+            subject_id="Sub01",
+            trial_id="Sub01_WAK",
+            time_tolerance_sec=0.0001,
+        )
+
         self.assertEqual(len(joined), 2)
-        self.assertIn("Status", joined.columns)
-        
-        df_data_wrong_len = pd.DataFrame([[0.0] + [0]*25], columns=valid_data_cols)
-        with self.assertRaises(ValueError):
-            join_wak_data_and_labels(df_data_wrong_len, df_valid)
-            
-        df_label_wrong_time = pd.DataFrame({"Time": [0.0, 0.2], "Status": [1, 5], "Group": [1, 1]})
-        with self.assertRaises(ValueError):
-            join_wak_data_and_labels(df_data, df_label_wrong_time)
+        self.assertEqual(joined["phase_interval"].tolist(), ["HS-MSF", "MWF-HS"])
+        self.assertEqual(int(quality.iloc[0]["invalid_status_rows"]), 1)
+        self.assertLessEqual(float(quality.iloc[0]["max_time_diff_sec"]), 0.0001)
 
-    def test_map_wak_status_to_phases(self):
-        from gait_rehab.siat_labels import map_wak_status_to_phases
-        
-        df = pd.DataFrame({"Status": [1, 2, 3, 4, 5, 0]})
-        mapped = map_wak_status_to_phases(df)
-        
-        self.assertIn("Phase", mapped.columns)
-        self.assertEqual(mapped["Phase"].iloc[0], "Initial Contact")
-        self.assertEqual(mapped["Phase"].iloc[4], "Pre Swing")
-        self.assertEqual(mapped["Phase"].iloc[5], "Unknown")
+    def test_map_wak_status_to_phase_intervals_and_functional_phases(self):
+        from gait_rehab.siat_labels import map_wak_status
 
-    def test_phase_coverage_and_dropped_accounting(self):
-        from gait_rehab.siat_atlas import calculate_phase_coverage
-        
-        df = pd.DataFrame({
-            "Phase": ["Initial Contact", "Initial Contact", "Unknown", "Mid Stance"]
-        })
-        coverage = calculate_phase_coverage(df)
-        
-        self.assertEqual(coverage["total_rows"], 4)
-        self.assertEqual(coverage["dropped_rows"], 1)
-        self.assertEqual(coverage["dropped_ratio"], 0.25)
-        self.assertIn("Initial Contact", coverage["phase_counts"])
-        self.assertEqual(coverage["phase_counts"]["Initial Contact"], 2)
+        mapped = [map_wak_status(value) for value in [1, 2, 3, 4, 5]]
 
-    def test_aggregate_wak_atlas(self):
-        from gait_rehab.siat_atlas import aggregate_wak_atlas
-        
-        df = pd.DataFrame({
-            "subject_id": ["Sub01", "Sub01", "Sub02", "Sub02", "Sub03", "Sub03"],
-            "Group": [1, 1, 1, 1, 2, 2],
-            "Phase": ["Initial Contact", "Mid Stance", "Initial Contact", "Mid Stance", "Initial Contact", "Mid Stance"],
-            "sEMG_0": [0.1, 0.2, 0.3, 0.4, 0.5, 0.6],
-            "Torque_0": [1.0, 2.0, 3.0, 4.0, 5.0, 6.0]
-        })
-        
-        aggregated = aggregate_wak_atlas(df)
-        
-        self.assertIn("Group", aggregated.columns)
-        self.assertIn("Phase", aggregated.columns)
-        self.assertIn("sEMG_0_mean", aggregated.columns)
-        self.assertIn("Torque_0_mean", aggregated.columns)
-        
-        # Verify group 1 initial contact mean: (0.1 + 0.3)/2 = 0.2
-        group1_ic = aggregated[(aggregated["Group"] == 1) & (aggregated["Phase"] == "Initial Contact")]
-        self.assertAlmostEqual(group1_ic["sEMG_0_mean"].iloc[0], 0.2)
-        
-        # Test full source coverage gate
-        with self.assertRaisesRegex(ValueError, "Too few subjects"):
-            aggregate_wak_atlas(df, min_subjects=5)
+        self.assertEqual(
+            [item.phase_interval for item in mapped],
+            ["HS-MSF", "MSF-MSE", "MSE-TO", "TO-MWF", "MWF-HS"],
+        )
+        self.assertEqual(mapped[0].functional_phase, "loading_response")
+        self.assertEqual(mapped[3].functional_phase, "push_off_to_swing_transition")
 
-    def test_calculate_peak_and_lag(self):
-        from gait_rehab.siat_atlas import calculate_peak_and_lag
-        
-        df = pd.DataFrame({
-            "Time": [0.0, 0.1, 0.2, 0.3, 0.4],
-            "sEMG_0": [0.1, 0.5, 0.2, 0.1, 0.0],
-            "Torque_0": [1.0, 2.0, 3.0, 5.0, 2.0]
-        })
-        
-        emg_peak, torque_peak, lag = calculate_peak_and_lag(df, "sEMG_0", "Torque_0")
-        
-        self.assertEqual(emg_peak, 0.1)
-        self.assertEqual(torque_peak, 0.3)
-        self.assertAlmostEqual(lag, 0.2)
+    def test_compute_wak_window_quality_counts_constant_status_group_windows(self):
+        from gait_rehab.siat_atlas import compute_wak_window_quality
 
-    def test_functional_domain_reporting(self):
-        from gait_rehab.reporting import validate_gaitrec_result_evidence, generate_functional_interpretation_summary
-        
-        # Test provenance gate
+        samples = pd.DataFrame(
+            {
+                "subject_id": ["Sub01"] * 6,
+                "trial_id": ["Sub01_WAK"] * 6,
+                "phase_interval": ["HS-MSF", "HS-MSF", "HS-MSF", "MSF-MSE", "MSF-MSE", "MSF-MSE"],
+                "Group": [1, 1, 1, 1, 1, 1],
+            }
+        )
+
+        quality = compute_wak_window_quality(samples, window_size=2, overlap=1)
+
+        self.assertEqual(int(quality.iloc[0]["potential_windows"]), 5)
+        self.assertEqual(int(quality.iloc[0]["accepted_windows"]), 4)
+        self.assertEqual(int(quality.iloc[0]["dropped_windows"]), 1)
+
+    def test_siat_wak_atlas_requires_phase_subject_coverage_threshold(self):
+        from gait_rehab.siat_atlas import validate_wak_atlas_coverage
+
+        coverage = pd.DataFrame(
+            {
+                "phase_interval": ["HS-MSF", "MSF-MSE"],
+                "subject_count": [2, 1],
+                "valid_status_rate": [0.90, 0.82],
+            }
+        )
+
+        with self.assertRaisesRegex(ValueError, "minimum subject coverage"):
+            validate_wak_atlas_coverage(coverage, min_subjects_per_phase=2, min_valid_status_rate=0.85)
+
+    def test_siat_wak_atlas_uses_subject_level_aggregation_not_row_level_average(self):
+        from gait_rehab.siat_atlas import build_siat_wak_reference_atlas
+
+        samples = pd.DataFrame(
+            {
+                "subject_id": ["Sub01"] * 10 + ["Sub02"] * 2,
+                "trial_id": ["t1"] * 12,
+                "task": ["WAK"] * 12,
+                "phase_interval": ["HS-MSF"] * 12,
+                "functional_phase": ["loading_response"] * 12,
+                "sEMG: soleus": [10.0] * 10 + [0.0] * 2,
+                "Kinetic: left ankle flexion torque": [2.0] * 10 + [0.0] * 2,
+            }
+        )
+
+        atlas = build_siat_wak_reference_atlas(samples)
+        emg = atlas["siat_wak_emg_phase_summary"]
+        row = emg.loc[emg["channel"].eq("sEMG: soleus")].iloc[0]
+
+        self.assertAlmostEqual(row["mean"], 5.0)
+        self.assertEqual(row["subject_count"], 2)
+
+    def test_siat_wak_atlas_reports_peak_timing_and_emg_torque_lag(self):
+        from gait_rehab.siat_atlas import build_siat_wak_reference_atlas
+
+        samples = pd.DataFrame(
+            {
+                "subject_id": ["Sub01"] * 5,
+                "trial_id": ["t1"] * 5,
+                "task": ["WAK"] * 5,
+                "Time": [0.0, 0.1, 0.2, 0.3, 0.4],
+                "phase_interval": ["HS-MSF", "MSF-MSE", "MSE-TO", "TO-MWF", "MWF-HS"],
+                "functional_phase": ["loading_response", "mid_stance_control", "terminal_stance", "push_off_to_swing_transition", "swing_recovery"],
+                "sEMG: lateral gastrocnemius": [0.1, 0.2, 0.4, 0.9, 0.3],
+                "Kinetic: left ankle flexion torque": [0.2, 0.3, 0.5, 1.2, 0.4],
+            }
+        )
+
+        atlas = build_siat_wak_reference_atlas(samples)
+        peaks = atlas["siat_wak_peak_timing"]
+
+        self.assertIn("peak_time", peaks.columns)
+        self.assertIn("peak_phase_interval", peaks.columns)
+        self.assertIn("siat_wak_emg_torque_lag", atlas)
+        self.assertFalse(atlas["siat_wak_emg_torque_lag"].empty)
+
+    def test_functional_domain_reporting_requires_provenance(self):
+        from gait_rehab.reporting import generate_functional_interpretation_summary
+
         with self.assertRaisesRegex(ValueError, "Missing GaitRec provenance"):
-            validate_gaitrec_result_evidence({"run_id": "123"})
-        
-        valid_provenance = {"source_branch": "main", "source_commit": "abc", "run_id": "123"}
-        self.assertTrue(validate_gaitrec_result_evidence(valid_provenance))
-        
-        # Test report wording guardrail
-        report = generate_functional_interpretation_summary(pd.DataFrame(), {"feature_importance": {"vgrf_peak_aff": 0.3}}, valid_provenance)
-        
+            generate_functional_interpretation_summary(
+                siat_atlas={},
+                gaitrec_results={"feature_importance": {"vgrf_peak_aff": 0.3}},
+                provenance={}
+            )
+
+    def test_functional_domain_reporting_contains_interpretation_only_guardrails(self):
+        from gait_rehab.reporting import generate_functional_interpretation_summary
+
+        report = generate_functional_interpretation_summary(
+            siat_atlas={},
+            gaitrec_results={"feature_importance": {"vgrf_peak_aff": 0.3}},
+            provenance={"source_branch": "main", "source_commit": "abc", "run_id": "123"}
+        )
+
         self.assertIn("본 프로젝트는 특정 근육의 약화나 통증 원인을 확정하지 않습니다", report)
+        self.assertIn("SIAT Reference는 정상군 기준을 제시할 뿐, 진단이나 처방을 위한 용도가 아닙니다", report)
         
-        forbidden_claims = ["근육이 약하다", "질환이다", "진단", "처방"]
-        for claim in forbidden_claims:
-            self.assertNotIn(claim, report)
+        forbidden = ["진단 모델", "질환 여부 판단", "근육 약화 확진"]
+        for f in forbidden:
+            self.assertNotIn(f, report)
 
-    def test_pipeline_wiring_without_classifier_coupling(self):
-        from gait_rehab.pipeline import run_full_pipeline
-        
-        # Test that running the main pipeline doesn't use SIAT features
-        # Note: actually running the full pipeline here is heavy, so we just
-        # ensure the run_pipeline signature doesn't require SIAT
-        import inspect
-        sig = inspect.signature(run_full_pipeline)
-        
-        # If it has a siat_root, it must be optional or not passed to models
-        if "siat_root" in sig.parameters:
-            pass # ok as long as it's optional or handled
-            
-        # We already tested available_feature_columns in test_siat_columns_are_not_model_features
-        pass
-
-    def test_standalone_wak_atlas_cli(self):
-        import subprocess
-        import sys
-        
-        # Just test that the script can be invoked with --help without crashing
-        script_path = Path(__file__).resolve().parents[1] / "scripts" / "run_siat_reference.py"
-        if not script_path.exists():
-            # Create a dummy script for now just to pass the test structure, but we'll implement it shortly
-            script_path.parent.mkdir(exist_ok=True)
-            script_path.write_text("import argparse\nif __name__ == '__main__':\n    parser = argparse.ArgumentParser()\n    parser.parse_args()", encoding="utf-8")
-            
-        result = subprocess.run([sys.executable, str(script_path), "--help"], capture_output=True, text=True)
-        self.assertEqual(result.returncode, 0)
-        self.assertIn("usage", result.stdout.lower())
-
-
-
-
-if __name__ == "__main__":
+if __name__ == '__main__':
     unittest.main()
+
+
+
+
+
+

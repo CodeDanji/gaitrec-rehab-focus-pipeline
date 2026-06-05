@@ -246,3 +246,42 @@ def _write_structure_report(path: Path, inventory: pd.DataFrame, candidates: pd.
         lines.append("")
         lines.append("See `tables/siat_column_candidates.csv` for column-level details.")
     path.write_text("\n".join(lines), encoding="utf-8")
+from dataclasses import dataclass
+from typing import List
+
+@dataclass
+class SiatDataSchema:
+    time_column: str
+    kinematic_columns: List[str]
+    kinetic_columns: List[str]
+    emg_columns: List[str]
+    schema_inferred_from_position: bool
+
+def validate_siat_data_schema(frame: pd.DataFrame, source_path: Path) -> SiatDataSchema:
+    if len(frame.columns) != 26:
+        raise ValueError(f"Expected 26 columns, found {len(frame.columns)} in {source_path}")
+        
+    cols = list(frame.columns)
+    
+    time_cols = [c for c in cols if c == "Time"]
+    kinematic_cols = [c for c in cols if str(c).startswith("Kinematic:")]
+    kinetic_cols = [c for c in cols if str(c).startswith("Kinetic:")]
+    emg_cols = [c for c in cols if str(c).startswith("sEMG:")]
+    
+    inferred = False
+    
+    # If not fully named, use canonical indices if exactly 26 columns
+    if len(time_cols) != 1 or len(kinematic_cols) != 8 or len(kinetic_cols) != 8 or len(emg_cols) != 9:
+        inferred = True
+        time_cols = [cols[0]]
+        kinematic_cols = cols[1:9]
+        kinetic_cols = cols[9:17]
+        emg_cols = cols[17:26]
+        
+    return SiatDataSchema(
+        time_column=time_cols[0],
+        kinematic_columns=kinematic_cols,
+        kinetic_columns=kinetic_cols,
+        emg_columns=emg_cols,
+        schema_inferred_from_position=inferred
+    )
