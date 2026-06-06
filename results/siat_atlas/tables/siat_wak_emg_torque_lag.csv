@@ -1,0 +1,118 @@
+subject_id,trial_id,emg_channel,torque_channel,lag_sec,sign_convention_verified,body_mass_normalized,side_mapping_scope
+Sub01,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-3.4656249987812533,False,unknown,SIAT left-limb reference
+Sub01,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-4.530729169171876,False,unknown,SIAT left-limb reference
+Sub01,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-4.813020834531253,False,unknown,SIAT left-limb reference
+Sub02,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,3.2802083299687514,False,unknown,SIAT left-limb reference
+Sub02,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,5.4083333288125015,False,unknown,SIAT left-limb reference
+Sub02,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-3.7562500008125,False,unknown,SIAT left-limb reference
+Sub03,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,0.611458332125002,False,unknown,SIAT left-limb reference
+Sub03,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,3.7828124981406273,False,unknown,SIAT left-limb reference
+Sub03,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-0.4010416665937484,False,unknown,SIAT left-limb reference
+Sub04,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-4.029166668734377,False,unknown,SIAT left-limb reference
+Sub04,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,2.5588541670312486,False,unknown,SIAT left-limb reference
+Sub04,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-1.714583336937502,False,unknown,SIAT left-limb reference
+Sub05,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,3.786979172328125,False,unknown,SIAT left-limb reference
+Sub05,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,5.074479171937501,False,unknown,SIAT left-limb reference
+Sub05,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-4.393750000296876,False,unknown,SIAT left-limb reference
+Sub06,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-5.428124999421875,False,unknown,SIAT left-limb reference
+Sub06,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-5.4265624995312525,False,unknown,SIAT left-limb reference
+Sub06,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-5.414583333703126,False,unknown,SIAT left-limb reference
+Sub07,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,10.204687507843753,False,unknown,SIAT left-limb reference
+Sub07,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,6.802083339843752,False,unknown,SIAT left-limb reference
+Sub07,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-0.5260416638437491,False,unknown,SIAT left-limb reference
+Sub08,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,5.8984374970625,False,unknown,SIAT left-limb reference
+Sub08,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,8.196874996125,False,unknown,SIAT left-limb reference
+Sub08,T01,sEMG: soleus,Kinetic: left ankle flexion torque,1.8499999994843748,False,unknown,SIAT left-limb reference
+Sub09,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,0.8744791670624998,False,unknown,SIAT left-limb reference
+Sub09,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,0.81927083409375,False,unknown,SIAT left-limb reference
+Sub09,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-1.9723958278125,False,unknown,SIAT left-limb reference
+Sub10,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,2.214583328546875,False,unknown,SIAT left-limb reference
+Sub10,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,3.303124999890625,False,unknown,SIAT left-limb reference
+Sub10,T01,sEMG: soleus,Kinetic: left ankle flexion torque,4.24843750025,False,unknown,SIAT left-limb reference
+Sub11,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-0.5088541655156291,False,unknown,SIAT left-limb reference
+Sub11,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,8.51354167284375,False,unknown,SIAT left-limb reference
+Sub11,T01,sEMG: soleus,Kinetic: left ankle flexion torque,2.1531250032187472,False,unknown,SIAT left-limb reference
+Sub12,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-4.601562495671878,False,unknown,SIAT left-limb reference
+Sub12,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-1.436979163359374,False,unknown,SIAT left-limb reference
+Sub12,T01,sEMG: soleus,Kinetic: left ankle flexion torque,5.148437500359376,False,unknown,SIAT left-limb reference
+Sub13,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,5.743229164437501,False,unknown,SIAT left-limb reference
+Sub13,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-1.9333333307031229,False,unknown,SIAT left-limb reference
+Sub13,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-3.4395833319531235,False,unknown,SIAT left-limb reference
+Sub14,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,2.472395831359374,False,unknown,SIAT left-limb reference
+Sub14,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-1.6052083326562503,False,unknown,SIAT left-limb reference
+Sub14,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-1.6249999982656256,False,unknown,SIAT left-limb reference
+Sub15,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,1.0984375002031257,False,unknown,SIAT left-limb reference
+Sub15,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-4.726562499828124,False,unknown,SIAT left-limb reference
+Sub15,T01,sEMG: soleus,Kinetic: left ankle flexion torque,1.0656250032968755,False,unknown,SIAT left-limb reference
+Sub16,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-6.036458333515626,False,unknown,SIAT left-limb reference
+Sub16,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-3.0093749984375,False,unknown,SIAT left-limb reference
+Sub16,T01,sEMG: soleus,Kinetic: left ankle flexion torque,4.251562496703127,False,unknown,SIAT left-limb reference
+Sub17,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,8.175000006296877,False,unknown,SIAT left-limb reference
+Sub17,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-0.539583331250002,False,unknown,SIAT left-limb reference
+Sub17,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-0.6890624978125022,False,unknown,SIAT left-limb reference
+Sub19,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-0.6520833331874947,False,unknown,SIAT left-limb reference
+Sub19,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-0.6286458345624997,False,unknown,SIAT left-limb reference
+Sub19,T01,sEMG: soleus,Kinetic: left ankle flexion torque,8.232812499750004,False,unknown,SIAT left-limb reference
+Sub20,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-2.2640625008437496,False,unknown,SIAT left-limb reference
+Sub20,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-2.205208334890626,False,unknown,SIAT left-limb reference
+Sub20,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-1.0338541687656253,False,unknown,SIAT left-limb reference
+Sub21,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,3.416145829281249,False,unknown,SIAT left-limb reference
+Sub21,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,0.6317708315156239,False,unknown,SIAT left-limb reference
+Sub21,T01,sEMG: soleus,Kinetic: left ankle flexion torque,7.13333332603125,False,unknown,SIAT left-limb reference
+Sub22,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-1.8796874989531283,False,unknown,SIAT left-limb reference
+Sub22,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,6.06562500690625,False,unknown,SIAT left-limb reference
+Sub22,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-0.15208333306249955,False,unknown,SIAT left-limb reference
+Sub23,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,4.043749999265627,False,unknown,SIAT left-limb reference
+Sub23,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,4.056250001203126,False,unknown,SIAT left-limb reference
+Sub23,T01,sEMG: soleus,Kinetic: left ankle flexion torque,1.1046875040312507,False,unknown,SIAT left-limb reference
+Sub24,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-0.4833333351562503,False,unknown,SIAT left-limb reference
+Sub24,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,1.3197916661875002,False,unknown,SIAT left-limb reference
+Sub24,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-0.4833333351562503,False,unknown,SIAT left-limb reference
+Sub25,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,4.145833331265625,False,unknown,SIAT left-limb reference
+Sub25,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,4.1442708311250005,False,unknown,SIAT left-limb reference
+Sub25,T01,sEMG: soleus,Kinetic: left ankle flexion torque,2.9895833322031238,False,unknown,SIAT left-limb reference
+Sub26,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-4.539062497218751,False,unknown,SIAT left-limb reference
+Sub26,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-5.880729166078126,False,unknown,SIAT left-limb reference
+Sub26,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-3.2041666655000007,False,unknown,SIAT left-limb reference
+Sub27,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,2.092708338265627,False,unknown,SIAT left-limb reference
+Sub27,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,9.913541672000001,False,unknown,SIAT left-limb reference
+Sub27,T01,sEMG: soleus,Kinetic: left ankle flexion torque,11.350520836906252,False,unknown,SIAT left-limb reference
+Sub28,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,3.7874999999531234,False,unknown,SIAT left-limb reference
+Sub28,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,3.7791666649531237,False,unknown,SIAT left-limb reference
+Sub28,T01,sEMG: soleus,Kinetic: left ankle flexion torque,11.333854167968749,False,unknown,SIAT left-limb reference
+Sub29,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-4.824999997749999,False,unknown,SIAT left-limb reference
+Sub29,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,6.8588541663281255,False,unknown,SIAT left-limb reference
+Sub29,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-2.968229162374999,False,unknown,SIAT left-limb reference
+Sub30,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,1.7953125034374988,False,unknown,SIAT left-limb reference
+Sub30,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,0.6635416679687491,False,unknown,SIAT left-limb reference
+Sub30,T01,sEMG: soleus,Kinetic: left ankle flexion torque,3.0375000042812488,False,unknown,SIAT left-limb reference
+Sub31,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,0.6624999990312501,False,unknown,SIAT left-limb reference
+Sub31,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-4.259895838859377,False,unknown,SIAT left-limb reference
+Sub31,T01,sEMG: soleus,Kinetic: left ankle flexion torque,6.284374998703125,False,unknown,SIAT left-limb reference
+Sub32,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-2.7807291701093755,False,unknown,SIAT left-limb reference
+Sub32,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-3.794791666859374,False,unknown,SIAT left-limb reference
+Sub32,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-2.8005208360937504,False,unknown,SIAT left-limb reference
+Sub33,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,6.101041666593751,False,unknown,SIAT left-limb reference
+Sub33,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,5.810416665890626,False,unknown,SIAT left-limb reference
+Sub33,T01,sEMG: soleus,Kinetic: left ankle flexion torque,4.559895832703126,False,unknown,SIAT left-limb reference
+Sub34,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-3.2328125020624983,False,unknown,SIAT left-limb reference
+Sub34,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,5.705729171156251,False,unknown,SIAT left-limb reference
+Sub34,T01,sEMG: soleus,Kinetic: left ankle flexion torque,2.29062500325,False,unknown,SIAT left-limb reference
+Sub35,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,0.688020838734376,False,unknown,SIAT left-limb reference
+Sub35,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,2.2343750060000023,False,unknown,SIAT left-limb reference
+Sub35,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-3.1229166627968734,False,unknown,SIAT left-limb reference
+Sub36,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-0.567187501374999,False,unknown,SIAT left-limb reference
+Sub36,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,0.8614583342968771,False,unknown,SIAT left-limb reference
+Sub36,T01,sEMG: soleus,Kinetic: left ankle flexion torque,12.690624995437503,False,unknown,SIAT left-limb reference
+Sub37,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,3.805729171359377,False,unknown,SIAT left-limb reference
+Sub37,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-0.4218749978749994,False,unknown,SIAT left-limb reference
+Sub37,T01,sEMG: soleus,Kinetic: left ankle flexion torque,1.7057291686718754,False,unknown,SIAT left-limb reference
+Sub38,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,1.0812500048749998,False,unknown,SIAT left-limb reference
+Sub38,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-0.34114583156250156,False,unknown,SIAT left-limb reference
+Sub38,T01,sEMG: soleus,Kinetic: left ankle flexion torque,4.035937504609375,False,unknown,SIAT left-limb reference
+Sub39,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,-2.5890625035625012,False,unknown,SIAT left-limb reference
+Sub39,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-1.514583334421876,False,unknown,SIAT left-limb reference
+Sub39,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-0.4848958343906258,False,unknown,SIAT left-limb reference
+Sub40,T01,sEMG: lateral gastrocnemius,Kinetic: left ankle flexion torque,1.1380208341718747,False,unknown,SIAT left-limb reference
+Sub40,T01,sEMG: medial gastrocnemius,Kinetic: left ankle flexion torque,-0.46979166612500034,False,unknown,SIAT left-limb reference
+Sub40,T01,sEMG: soleus,Kinetic: left ankle flexion torque,-0.4546874996718753,False,unknown,SIAT left-limb reference

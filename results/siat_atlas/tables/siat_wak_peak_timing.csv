@@ -1,0 +1,664 @@
+subject_id,trial_id,channel,peak_time,peak_phase_interval,emg_processing,torque_peak_definition
+Sub01,T01,Kinetic: left hip adduction torque,2.266145835015625,MSE-TO,,maximum
+Sub01,T01,Kinetic: left hip flexion torque,7.100520832484375,MWF-HS,,maximum
+Sub01,T01,Kinetic: left knee flexion torque,6.251562499015625,MSE-TO,,maximum
+Sub01,T01,Kinetic: left ankle flexion torque,9.31770833125,HS-MSF,,maximum
+Sub01,T01,Kinetic: right hip adduction torque,0.723437497953125,MSE-TO,,maximum
+Sub01,T01,Kinetic: right hip flexion torque,10.01770833125,MSE-TO,,maximum
+Sub01,T01,Kinetic: right knee flexion torque,4.974479165765625,MSE-TO,,maximum
+Sub01,T01,Kinetic: right ankle flexion torque,2.216145835015625,MSE-TO,,maximum
+Sub01,T01,sEMG: tensor fascia lata,2.021354167671875,MSE-TO,rectified_envelope,
+Sub01,T01,sEMG: rectus femoris,0.176562498578125,MSF-MSE,rectified_envelope,
+Sub01,T01,sEMG: vastus medialis,13.646354167359377,HS-MSF,rectified_envelope,
+Sub01,T01,sEMG: semimembranosus,10.811979165640626,HS-MSF,rectified_envelope,
+Sub01,T01,sEMG: upper tibialis anterior,13.861979165546876,MSF-MSE,rectified_envelope,
+Sub01,T01,sEMG: lower tibialis anterior,4.71458333371875,MSF-MSE,rectified_envelope,
+Sub01,T01,sEMG: lateral gastrocnemius,12.783333330031253,MSE-TO,rectified_envelope,
+Sub01,T01,sEMG: medial gastrocnemius,13.848437500421875,MSF-MSE,rectified_envelope,
+Sub01,T01,sEMG: soleus,14.130729165781252,MSE-TO,rectified_envelope,
+Sub02,T01,Kinetic: left hip adduction torque,5.178124996343751,MWF-HS,,maximum
+Sub02,T01,Kinetic: left hip flexion torque,9.688020827343752,MSE-TO,,maximum
+Sub02,T01,Kinetic: left knee flexion torque,1.546875001625,MSE-TO,,maximum
+Sub02,T01,Kinetic: left ankle flexion torque,5.907291662078126,HS-MSF,,maximum
+Sub02,T01,Kinetic: right hip adduction torque,0.5661458365625,MSE-TO,,maximum
+Sub02,T01,Kinetic: right hip flexion torque,3.196874997546876,MWF-HS,,maximum
+Sub02,T01,Kinetic: right knee flexion torque,1.630208331625,MSE-TO,,maximum
+Sub02,T01,Kinetic: right ankle flexion torque,3.763020829187501,MSE-TO,,maximum
+Sub02,T01,sEMG: tensor fascia lata,1.2411458338125,HS-MSF,rectified_envelope,
+Sub02,T01,sEMG: rectus femoris,2.28177083165625,HS-MSF,rectified_envelope,
+Sub02,T01,sEMG: vastus medialis,10.189062493875005,MWF-HS,rectified_envelope,
+Sub02,T01,sEMG: semimembranosus,7.963541664156251,MWF-HS,rectified_envelope,
+Sub02,T01,sEMG: upper tibialis anterior,9.666145829218753,MSE-TO,rectified_envelope,
+Sub02,T01,sEMG: lower tibialis anterior,8.118749998531252,HS-MSF,rectified_envelope,
+Sub02,T01,sEMG: lateral gastrocnemius,2.627083332109375,MSE-TO,rectified_envelope,
+Sub02,T01,sEMG: medial gastrocnemius,0.498958333265625,MSE-TO,rectified_envelope,
+Sub02,T01,sEMG: soleus,9.663541662890626,MSE-TO,rectified_envelope,
+Sub03,T01,Kinetic: left hip adduction torque,10.338541670812502,HS-MSF,,maximum
+Sub03,T01,Kinetic: left hip flexion torque,6.635416673375001,MSE-TO,,maximum
+Sub03,T01,Kinetic: left knee flexion torque,10.322395836484375,HS-MSF,,maximum
+Sub03,T01,Kinetic: left ankle flexion torque,10.355729169015628,HS-MSF,,maximum
+Sub03,T01,Kinetic: right hip adduction torque,1.70468750196875,MSE-TO,,maximum
+Sub03,T01,Kinetic: right hip flexion torque,3.368229168250001,MWF-HS,,maximum
+Sub03,T01,Kinetic: right knee flexion torque,7.168750004125001,MWF-HS,,maximum
+Sub03,T01,Kinetic: right ankle flexion torque,3.955208335828126,MSE-TO,,maximum
+Sub03,T01,sEMG: tensor fascia lata,9.393229170359376,HS-MSF,rectified_envelope,
+Sub03,T01,sEMG: rectus femoris,10.399479169453128,HS-MSF,rectified_envelope,
+Sub03,T01,sEMG: vastus medialis,8.363541669062501,HS-MSF,rectified_envelope,
+Sub03,T01,sEMG: semimembranosus,9.376041669843753,HS-MSF,rectified_envelope,
+Sub03,T01,sEMG: upper tibialis anterior,4.626562504406251,HS-MSF,rectified_envelope,
+Sub03,T01,sEMG: lower tibialis anterior,3.493229170718751,HS-MSF,rectified_envelope,
+Sub03,T01,sEMG: lateral gastrocnemius,9.744270836890626,MSE-TO,rectified_envelope,
+Sub03,T01,sEMG: medial gastrocnemius,6.572916670875001,MSF-MSE,rectified_envelope,
+Sub03,T01,sEMG: soleus,10.756770835609377,MSE-TO,rectified_envelope,
+Sub04,T01,Kinetic: left hip adduction torque,7.792708334171875,HS-MSF,,maximum
+Sub04,T01,Kinetic: left hip flexion torque,9.517187499125,MSE-TO,,maximum
+Sub04,T01,Kinetic: left knee flexion torque,4.086458333375,MSE-TO,,maximum
+Sub04,T01,Kinetic: left ankle flexion torque,6.606770832937499,HS-MSF,,maximum
+Sub04,T01,Kinetic: right hip adduction torque,5.334895835984375,MSE-TO,,maximum
+Sub04,T01,Kinetic: right hip flexion torque,3.515624999484374,MWF-HS,,maximum
+Sub04,T01,Kinetic: right knee flexion torque,4.619791668875,MWF-HS,,maximum
+Sub04,T01,Kinetic: right ankle flexion torque,6.7401041674375,MSF-MSE,,maximum
+Sub04,T01,sEMG: tensor fascia lata,2.262499995984375,MWF-HS,rectified_envelope,
+Sub04,T01,sEMG: rectus femoris,9.0687499994375,MSF-MSE,rectified_envelope,
+Sub04,T01,sEMG: vastus medialis,11.3380208358125,HS-MSF,rectified_envelope,
+Sub04,T01,sEMG: semimembranosus,6.236458334578125,TO-MWF,rectified_envelope,
+Sub04,T01,sEMG: upper tibialis anterior,7.13697916784375,MSE-TO,rectified_envelope,
+Sub04,T01,sEMG: lower tibialis anterior,10.679166668531252,MSE-TO,rectified_envelope,
+Sub04,T01,sEMG: lateral gastrocnemius,10.635937501671876,MSE-TO,rectified_envelope,
+Sub04,T01,sEMG: medial gastrocnemius,4.04791666590625,MSF-MSE,rectified_envelope,
+Sub04,T01,sEMG: soleus,8.321354169875,MSE-TO,rectified_envelope,
+Sub05,T01,Kinetic: left hip adduction torque,12.011458334,HS-MSF,,maximum
+Sub05,T01,Kinetic: left hip flexion torque,4.448437498765625,TO-MWF,,maximum
+Sub05,T01,Kinetic: left knee flexion torque,11.35000000146875,MSE-TO,,maximum
+Sub05,T01,Kinetic: left ankle flexion torque,6.88020833671875,HS-MSF,,maximum
+Sub05,T01,Kinetic: right hip adduction torque,1.877083334453125,MSE-TO,,maximum
+Sub05,T01,Kinetic: right hip flexion torque,10.916145838031252,MSF-MSE,,maximum
+Sub05,T01,Kinetic: right knee flexion torque,1.2140625028125,MWF-HS,,maximum
+Sub05,T01,Kinetic: right ankle flexion torque,12.161458334000002,MSF-MSE,,maximum
+Sub05,T01,sEMG: tensor fascia lata,8.226562503859377,HS-MSF,rectified_envelope,
+Sub05,T01,sEMG: rectus femoris,10.845312501656252,HS-MSF,rectified_envelope,
+Sub05,T01,sEMG: vastus medialis,10.877604169875,HS-MSF,rectified_envelope,
+Sub05,T01,sEMG: semimembranosus,9.617187503078126,HS-MSF,rectified_envelope,
+Sub05,T01,sEMG: upper tibialis anterior,8.122916671,HS-MSF,rectified_envelope,
+Sub05,T01,sEMG: lower tibialis anterior,7.345312501421875,MSF-MSE,rectified_envelope,
+Sub05,T01,sEMG: lateral gastrocnemius,3.093229164390625,MSE-TO,rectified_envelope,
+Sub05,T01,sEMG: medial gastrocnemius,1.80572916478125,MSF-MSE,rectified_envelope,
+Sub05,T01,sEMG: soleus,11.273958337015626,MSF-MSE,rectified_envelope,
+Sub06,T01,Kinetic: left hip adduction torque,0.7515625003125,MSE-TO,,maximum
+Sub06,T01,Kinetic: left hip flexion torque,11.3708333358125,TO-MWF,,maximum
+Sub06,T01,Kinetic: left knee flexion torque,9.315625002125,HS-MSF,,maximum
+Sub06,T01,Kinetic: left ankle flexion torque,6.886979169421876,HS-MSF,,maximum
+Sub06,T01,Kinetic: right hip adduction torque,5.713541667546876,MSE-TO,,maximum
+Sub06,T01,Kinetic: right hip flexion torque,1.2848958303125,MWF-HS,,maximum
+Sub06,T01,Kinetic: right knee flexion torque,5.713020834250001,MSE-TO,,maximum
+Sub06,T01,Kinetic: right ankle flexion torque,10.756770835531253,MSF-MSE,,maximum
+Sub06,T01,sEMG: tensor fascia lata,10.7218750026875,MSF-MSE,rectified_envelope,
+Sub06,T01,sEMG: rectus femoris,11.900000003328126,MSF-MSE,rectified_envelope,
+Sub06,T01,sEMG: vastus medialis,2.725520833515625,HS-MSF,rectified_envelope,
+Sub06,T01,sEMG: semimembranosus,10.707812502125002,HS-MSF,rectified_envelope,
+Sub06,T01,sEMG: upper tibialis anterior,10.527604170500002,MWF-HS,rectified_envelope,
+Sub06,T01,sEMG: lower tibialis anterior,6.556250005750001,MWF-HS,rectified_envelope,
+Sub06,T01,sEMG: lateral gastrocnemius,12.315104168843751,MSE-TO,rectified_envelope,
+Sub06,T01,sEMG: medial gastrocnemius,12.313541668953128,MSE-TO,rectified_envelope,
+Sub06,T01,sEMG: soleus,12.301562503125002,MSE-TO,rectified_envelope,
+Sub07,T01,Kinetic: left hip adduction torque,3.054166668703125,MSE-TO,,maximum
+Sub07,T01,Kinetic: left hip flexion torque,11.35364584125,MSE-TO,,maximum
+Sub07,T01,Kinetic: left knee flexion torque,10.770312505750002,HS-MSF,,maximum
+Sub07,T01,Kinetic: left ankle flexion torque,10.803645841250002,HS-MSF,,maximum
+Sub07,T01,Kinetic: right hip adduction torque,2.970833333203125,MSE-TO,,maximum
+Sub07,T01,Kinetic: right hip flexion torque,5.693229167781251,MWF-HS,,maximum
+Sub07,T01,Kinetic: right knee flexion torque,4.49739583528125,MWF-HS,,maximum
+Sub07,T01,Kinetic: right ankle flexion torque,5.178125002171876,MSE-TO,,maximum
+Sub07,T01,sEMG: tensor fascia lata,7.550000004531251,MSF-MSE,rectified_envelope,
+Sub07,T01,sEMG: rectus femoris,2.739062499015625,MSF-MSE,rectified_envelope,
+Sub07,T01,sEMG: vastus medialis,7.38020833503125,HS-MSF,rectified_envelope,
+Sub07,T01,sEMG: semimembranosus,2.547395834015625,MSF-MSE,rectified_envelope,
+Sub07,T01,sEMG: upper tibialis anterior,7.802083337937502,MSE-TO,rectified_envelope,
+Sub07,T01,sEMG: lower tibialis anterior,2.804166668703125,MSF-MSE,rectified_envelope,
+Sub07,T01,sEMG: lateral gastrocnemius,0.59895833340625,MSE-TO,rectified_envelope,
+Sub07,T01,sEMG: medial gastrocnemius,4.001562501406251,MSE-TO,rectified_envelope,
+Sub07,T01,sEMG: soleus,11.329687505093752,MSE-TO,rectified_envelope,
+Sub08,T01,Kinetic: left hip adduction torque,3.007812501796876,MSE-TO,,maximum
+Sub08,T01,Kinetic: left hip flexion torque,6.855208331437501,MSE-TO,,maximum
+Sub08,T01,Kinetic: left knee flexion torque,2.841145836296875,MSE-TO,,maximum
+Sub08,T01,Kinetic: left ankle flexion torque,9.922395831546876,HS-MSF,,maximum
+Sub08,T01,Kinetic: right hip adduction torque,4.038020837296876,MSE-TO,,maximum
+Sub08,T01,Kinetic: right hip flexion torque,5.717708333937501,MWF-HS,,maximum
+Sub08,T01,Kinetic: right knee flexion torque,4.038020837296876,MSE-TO,,maximum
+Sub08,T01,Kinetic: right ankle flexion torque,2.957812501796875,MSE-TO,,maximum
+Sub08,T01,sEMG: tensor fascia lata,2.78229167078125,MSF-MSE,rectified_envelope,
+Sub08,T01,sEMG: rectus femoris,6.4645833333125,HS-MSF,rectified_envelope,
+Sub08,T01,sEMG: vastus medialis,8.806770832375001,MSF-MSE,rectified_envelope,
+Sub08,T01,sEMG: semimembranosus,2.726562504859375,MSF-MSE,rectified_envelope,
+Sub08,T01,sEMG: upper tibialis anterior,6.509374998937501,MSF-MSE,rectified_envelope,
+Sub08,T01,sEMG: lower tibialis anterior,6.599999998187501,MSF-MSE,rectified_envelope,
+Sub08,T01,sEMG: lateral gastrocnemius,4.023958334484376,MSE-TO,rectified_envelope,
+Sub08,T01,sEMG: medial gastrocnemius,1.725520835421875,MSE-TO,rectified_envelope,
+Sub08,T01,sEMG: soleus,8.0723958320625,MSE-TO,rectified_envelope,
+Sub09,T01,Kinetic: left hip adduction torque,5.019791667734376,TO-MWF,,maximum
+Sub09,T01,Kinetic: left hip flexion torque,8.179687502453126,MSE-TO,,maximum
+Sub09,T01,Kinetic: left knee flexion torque,10.2953124991875,HS-MSF,,maximum
+Sub09,T01,Kinetic: left ankle flexion torque,8.954166669515626,HS-MSF,,maximum
+Sub09,T01,Kinetic: right hip adduction torque,3.395833334250001,MSE-TO,,maximum
+Sub09,T01,Kinetic: right hip flexion torque,1.4046875009375,MWF-HS,,maximum
+Sub09,T01,Kinetic: right knee flexion torque,11.468749995765627,MWF-HS,,maximum
+Sub09,T01,Kinetic: right ankle flexion torque,7.713020837953126,MSF-MSE,,maximum
+Sub09,T01,sEMG: tensor fascia lata,7.930208335750001,MSE-TO,rectified_envelope,
+Sub09,T01,sEMG: rectus femoris,7.472395836734377,HS-MSF,rectified_envelope,
+Sub09,T01,sEMG: vastus medialis,7.472395836734377,HS-MSF,rectified_envelope,
+Sub09,T01,sEMG: semimembranosus,9.035937499625,HS-MSF,rectified_envelope,
+Sub09,T01,sEMG: upper tibialis anterior,11.888541665359377,MSF-MSE,rectified_envelope,
+Sub09,T01,sEMG: lower tibialis anterior,6.336979171093751,TO-MWF,rectified_envelope,
+Sub09,T01,sEMG: lateral gastrocnemius,8.079687502453126,MSE-TO,rectified_envelope,
+Sub09,T01,sEMG: medial gastrocnemius,8.134895835421876,MSE-TO,rectified_envelope,
+Sub09,T01,sEMG: soleus,10.926562497328126,MSE-TO,rectified_envelope,
+Sub10,T01,Kinetic: left hip adduction torque,7.92395833665625,HS-MSF,,maximum
+Sub10,T01,Kinetic: left hip flexion torque,10.507291666484376,MSE-TO,,maximum
+Sub10,T01,Kinetic: left knee flexion torque,0.4630208359375,MSE-TO,,maximum
+Sub10,T01,Kinetic: left ankle flexion torque,5.889062501328125,HS-MSF,,maximum
+Sub10,T01,Kinetic: right hip adduction torque,4.767708334890625,MSE-TO,,maximum
+Sub10,T01,Kinetic: right hip flexion torque,2.1182291679375,MWF-HS,,maximum
+Sub10,T01,Kinetic: right knee flexion torque,3.047395837062501,MWF-HS,,maximum
+Sub10,T01,Kinetic: right ankle flexion torque,0.5796875004375,MSE-TO,,maximum
+Sub10,T01,sEMG: tensor fascia lata,4.35989583590625,HS-MSF,rectified_envelope,
+Sub10,T01,sEMG: rectus femoris,4.379166667421876,HS-MSF,rectified_envelope,
+Sub10,T01,sEMG: vastus medialis,0.144791666046875,HS-MSF,rectified_envelope,
+Sub10,T01,sEMG: semimembranosus,5.686979168140625,MWF-HS,rectified_envelope,
+Sub10,T01,sEMG: upper tibialis anterior,4.346875002890625,HS-MSF,rectified_envelope,
+Sub10,T01,sEMG: lower tibialis anterior,0.19114583296875,MSF-MSE,rectified_envelope,
+Sub10,T01,sEMG: lateral gastrocnemius,3.67447917278125,MSE-TO,rectified_envelope,
+Sub10,T01,sEMG: medial gastrocnemius,2.5859375014375,MSE-TO,rectified_envelope,
+Sub10,T01,sEMG: soleus,1.640625001078125,MSE-TO,rectified_envelope,
+Sub11,T01,Kinetic: left hip adduction torque,3.716145833281251,MSE-TO,,maximum
+Sub11,T01,Kinetic: left hip flexion torque,12.401041676031252,MSE-TO,,maximum
+Sub11,T01,Kinetic: left knee flexion torque,6.171354170156251,MSE-TO,,maximum
+Sub11,T01,Kinetic: left ankle flexion torque,10.4312500098125,HS-MSF,,maximum
+Sub11,T01,Kinetic: right hip adduction torque,3.615624999984376,MSE-TO,,maximum
+Sub11,T01,Kinetic: right hip flexion torque,2.847395835312501,MWF-HS,,maximum
+Sub11,T01,Kinetic: right knee flexion torque,1.30833333275,MWF-HS,,maximum
+Sub11,T01,Kinetic: right ankle flexion torque,2.2000000025,MSE-TO,,maximum
+Sub11,T01,sEMG: tensor fascia lata,7.577083340062502,MWF-HS,rectified_envelope,
+Sub11,T01,sEMG: rectus femoris,9.104166676031252,HS-MSF,rectified_envelope,
+Sub11,T01,sEMG: vastus medialis,4.414062505421876,HS-MSF,rectified_envelope,
+Sub11,T01,sEMG: semimembranosus,9.079166673468752,HS-MSF,rectified_envelope,
+Sub11,T01,sEMG: upper tibialis anterior,3.090104168734376,MSF-MSE,rectified_envelope,
+Sub11,T01,sEMG: lower tibialis anterior,11.850520842734376,HS-MSF,rectified_envelope,
+Sub11,T01,sEMG: lateral gastrocnemius,10.940104175328129,MSF-MSE,rectified_envelope,
+Sub11,T01,sEMG: medial gastrocnemius,1.91770833696875,MSF-MSE,rectified_envelope,
+Sub11,T01,sEMG: soleus,8.278125006593752,MSE-TO,rectified_envelope,
+Sub12,T01,Kinetic: left hip adduction torque,5.667708336515625,HS-MSF,,maximum
+Sub12,T01,Kinetic: left hip flexion torque,7.206249999734377,MSE-TO,,maximum
+Sub12,T01,Kinetic: left knee flexion torque,9.188541663640626,MSE-TO,,maximum
+Sub12,T01,Kinetic: left ankle flexion torque,5.668229169781251,HS-MSF,,maximum
+Sub12,T01,Kinetic: right hip adduction torque,1.613541670078125,MSE-TO,,maximum
+Sub12,T01,Kinetic: right hip flexion torque,3.0578125038125,MWF-HS,,maximum
+Sub12,T01,Kinetic: right knee flexion torque,3.60989584165625,MSE-TO,,maximum
+Sub12,T01,Kinetic: right ankle flexion torque,3.643229171656251,MSE-TO,,maximum
+Sub12,T01,sEMG: tensor fascia lata,9.962499999359377,MSF-MSE,rectified_envelope,
+Sub12,T01,sEMG: rectus femoris,5.724479168968751,HS-MSF,rectified_envelope,
+Sub12,T01,sEMG: vastus medialis,8.863541665890626,HS-MSF,rectified_envelope,
+Sub12,T01,sEMG: semimembranosus,5.623437502437501,HS-MSF,rectified_envelope,
+Sub12,T01,sEMG: upper tibialis anterior,2.743229172375,TO-MWF,rectified_envelope,
+Sub12,T01,sEMG: lower tibialis anterior,9.616145832375002,MWF-HS,rectified_envelope,
+Sub12,T01,sEMG: lateral gastrocnemius,10.269791665453129,MSE-TO,rectified_envelope,
+Sub12,T01,sEMG: medial gastrocnemius,7.105208333140625,MSE-TO,rectified_envelope,
+Sub12,T01,sEMG: soleus,0.519791669421875,MSE-TO,rectified_envelope,
+Sub13,T01,Kinetic: left hip adduction torque,11.8906249955625,HS-MSF,,maximum
+Sub13,T01,Kinetic: left hip flexion torque,12.585416662906251,MSE-TO,,maximum
+Sub13,T01,Kinetic: left knee flexion torque,11.092187495875,MSE-TO,,maximum
+Sub13,T01,Kinetic: left ankle flexion torque,9.078124997859376,HS-MSF,,maximum
+Sub13,T01,Kinetic: right hip adduction torque,6.15260416140625,MSE-TO,,maximum
+Sub13,T01,Kinetic: right hip flexion torque,2.705208331703125,MWF-HS,,maximum
+Sub13,T01,Kinetic: right knee flexion torque,5.428124996484375,MWF-HS,,maximum
+Sub13,T01,Kinetic: right ankle flexion torque,0.7286458335625,MSE-TO,,maximum
+Sub13,T01,sEMG: tensor fascia lata,9.4526041618125,MSF-MSE,rectified_envelope,
+Sub13,T01,sEMG: rectus femoris,13.291666662468748,HS-MSF,rectified_envelope,
+Sub13,T01,sEMG: vastus medialis,13.311979165265626,HS-MSF,rectified_envelope,
+Sub13,T01,sEMG: semimembranosus,8.955208328296875,MWF-HS,rectified_envelope,
+Sub13,T01,sEMG: upper tibialis anterior,9.758854161375,MSE-TO,rectified_envelope,
+Sub13,T01,sEMG: lower tibialis anterior,13.813020832140626,MSE-TO,rectified_envelope,
+Sub13,T01,sEMG: lateral gastrocnemius,3.334895833421875,MSE-TO,rectified_envelope,
+Sub13,T01,sEMG: medial gastrocnemius,11.0114583285625,MSF-MSE,rectified_envelope,
+Sub13,T01,sEMG: soleus,12.5177083298125,MSF-MSE,rectified_envelope,
+Sub14,T01,Kinetic: left hip adduction torque,2.751562497203126,MSE-TO,,maximum
+Sub14,T01,Kinetic: left hip flexion torque,8.998437496656251,MSE-TO,,maximum
+Sub14,T01,Kinetic: left knee flexion torque,8.461458328671876,HS-MSF,,maximum
+Sub14,T01,Kinetic: left ankle flexion torque,7.348437496656251,HS-MSF,,maximum
+Sub14,T01,Kinetic: right hip adduction torque,0.578645832015625,MSE-TO,,maximum
+Sub14,T01,Kinetic: right hip flexion torque,5.370312499375002,MWF-HS,,maximum
+Sub14,T01,Kinetic: right knee flexion torque,1.6541666675,MSE-TO,,maximum
+Sub14,T01,Kinetic: right ankle flexion torque,6.318749999640626,MSF-MSE,,maximum
+Sub14,T01,sEMG: tensor fascia lata,2.329166666375001,MSF-MSE,rectified_envelope,
+Sub14,T01,sEMG: rectus femoris,3.345833331078126,HS-MSF,rectified_envelope,
+Sub14,T01,sEMG: vastus medialis,3.336979164468751,HS-MSF,rectified_envelope,
+Sub14,T01,sEMG: semimembranosus,6.174479165562501,HS-MSF,rectified_envelope,
+Sub14,T01,sEMG: upper tibialis anterior,10.626562494140629,MWF-HS,rectified_envelope,
+Sub14,T01,sEMG: lower tibialis anterior,6.720312499437501,MSE-TO,rectified_envelope,
+Sub14,T01,sEMG: lateral gastrocnemius,4.876041665296877,MSE-TO,rectified_envelope,
+Sub14,T01,sEMG: medial gastrocnemius,8.953645829312501,MSE-TO,rectified_envelope,
+Sub14,T01,sEMG: soleus,8.973437494921876,MSE-TO,rectified_envelope,
+Sub15,T01,Kinetic: left hip adduction torque,9.097916664562502,HS-MSF,,maximum
+Sub15,T01,Kinetic: left hip flexion torque,1.548437502750001,MSE-TO,,maximum
+Sub15,T01,Kinetic: left knee flexion torque,9.514583330062504,MSE-TO,,maximum
+Sub15,T01,Kinetic: left ankle flexion torque,5.826041668078127,HS-MSF,,maximum
+Sub15,T01,Kinetic: right hip adduction torque,2.647916670078126,MSE-TO,,maximum
+Sub15,T01,Kinetic: right hip flexion torque,1.0218750029375,MWF-HS,,maximum
+Sub15,T01,Kinetic: right knee flexion torque,3.727083334640626,MSE-TO,,maximum
+Sub15,T01,Kinetic: right ankle flexion torque,10.242187499156252,HS-MSF,,maximum
+Sub15,T01,sEMG: tensor fascia lata,6.137499999921877,MSF-MSE,rectified_envelope,
+Sub15,T01,sEMG: rectus femoris,6.003124998515627,MSF-MSE,rectified_envelope,
+Sub15,T01,sEMG: vastus medialis,6.970312496890627,HS-MSF,rectified_envelope,
+Sub15,T01,sEMG: semimembranosus,8.386979166500002,MSE-TO,rectified_envelope,
+Sub15,T01,sEMG: upper tibialis anterior,6.980729165640627,HS-MSF,rectified_envelope,
+Sub15,T01,sEMG: lower tibialis anterior,1.1463541696875,HS-MSF,rectified_envelope,
+Sub15,T01,sEMG: lateral gastrocnemius,4.727604167875001,MSE-TO,rectified_envelope,
+Sub15,T01,sEMG: medial gastrocnemius,10.552604167906251,MSE-TO,rectified_envelope,
+Sub15,T01,sEMG: soleus,4.760416664781252,MSE-TO,rectified_envelope,
+Sub16,T01,Kinetic: left hip adduction torque,6.278124998375,TO-MWF,,maximum
+Sub16,T01,Kinetic: left hip flexion torque,12.147395828109378,MSE-TO,,maximum
+Sub16,T01,Kinetic: left knee flexion torque,12.865624996015628,HS-MSF,,maximum
+Sub16,T01,Kinetic: left ankle flexion torque,7.428124995625002,HS-MSF,,maximum
+Sub16,T01,Kinetic: right hip adduction torque,0.688541664375,MSE-TO,,maximum
+Sub16,T01,Kinetic: right hip flexion torque,2.540104164140625,MWF-HS,,maximum
+Sub16,T01,Kinetic: right knee flexion torque,6.011458328375001,MSE-TO,,maximum
+Sub16,T01,Kinetic: right ankle flexion torque,10.568749995843753,MSF-MSE,,maximum
+Sub16,T01,sEMG: tensor fascia lata,5.510937495078125,HS-MSF,rectified_envelope,
+Sub16,T01,sEMG: rectus femoris,8.83854166065625,HS-MSF,rectified_envelope,
+Sub16,T01,sEMG: vastus medialis,5.285937499593751,MWF-HS,rectified_envelope,
+Sub16,T01,sEMG: semimembranosus,12.046874994671878,MSE-TO,rectified_envelope,
+Sub16,T01,sEMG: upper tibialis anterior,8.844791660640627,HS-MSF,rectified_envelope,
+Sub16,T01,sEMG: lower tibialis anterior,8.815104162984376,HS-MSF,rectified_envelope,
+Sub16,T01,sEMG: lateral gastrocnemius,13.464583329140629,MSE-TO,rectified_envelope,
+Sub16,T01,sEMG: medial gastrocnemius,10.437499994062502,MSF-MSE,rectified_envelope,
+Sub16,T01,sEMG: soleus,3.176562498921875,MSE-TO,rectified_envelope,
+Sub17,T01,Kinetic: left hip adduction torque,8.767708335640627,HS-MSF,,maximum
+Sub17,T01,Kinetic: left hip flexion torque,10.884375005640628,MSE-TO,,maximum
+Sub17,T01,Kinetic: left knee flexion torque,1.920833333640625,MSE-TO,,maximum
+Sub17,T01,Kinetic: left ankle flexion torque,8.784375005640626,HS-MSF,,maximum
+Sub17,T01,Kinetic: right hip adduction torque,3.31510416771875,MSE-TO,,maximum
+Sub17,T01,Kinetic: right hip flexion torque,6.670833335890626,MWF-HS,,maximum
+Sub17,T01,Kinetic: right knee flexion torque,8.667708335640627,MWF-HS,,maximum
+Sub17,T01,Kinetic: right ankle flexion torque,10.334375005640627,MSF-MSE,,maximum
+Sub17,T01,sEMG: tensor fascia lata,11.869791669406254,MSF-MSE,rectified_envelope,
+Sub17,T01,sEMG: rectus femoris,5.753645837500001,MSF-MSE,rectified_envelope,
+Sub17,T01,sEMG: vastus medialis,6.584895837015626,MWF-HS,rectified_envelope,
+Sub17,T01,sEMG: semimembranosus,0.648437500109375,MSE-TO,rectified_envelope,
+Sub17,T01,sEMG: upper tibialis anterior,9.478125004390629,MSE-TO,rectified_envelope,
+Sub17,T01,sEMG: lower tibialis anterior,2.1484374976875,TO-MWF,rectified_envelope,
+Sub17,T01,sEMG: lateral gastrocnemius,0.60937499934375,MSE-TO,rectified_envelope,
+Sub17,T01,sEMG: medial gastrocnemius,9.323958336890628,MSE-TO,rectified_envelope,
+Sub17,T01,sEMG: soleus,9.473437503453129,MSE-TO,rectified_envelope,
+Sub19,T01,Kinetic: left hip adduction torque,11.656770834171876,HS-MSF,,maximum
+Sub19,T01,Kinetic: left hip flexion torque,12.315624999687502,MSE-TO,,maximum
+Sub19,T01,Kinetic: left knee flexion torque,1.93645833440625,MSE-TO,,maximum
+Sub19,T01,Kinetic: left ankle flexion torque,13.030208331125005,HS-MSF,,maximum
+Sub19,T01,Kinetic: right hip adduction torque,4.745833331062501,MSE-TO,,maximum
+Sub19,T01,Kinetic: right hip flexion torque,2.775000002562501,MWF-HS,,maximum
+Sub19,T01,Kinetic: right knee flexion torque,6.702083330046875,MWF-HS,,maximum
+Sub19,T01,Kinetic: right ankle flexion torque,6.135416665546876,MSE-TO,,maximum
+Sub19,T01,sEMG: tensor fascia lata,13.025520831734378,HS-MSF,rectified_envelope,
+Sub19,T01,sEMG: rectus femoris,13.027604164796877,HS-MSF,rectified_envelope,
+Sub19,T01,sEMG: vastus medialis,13.163020833187502,MSF-MSE,rectified_envelope,
+Sub19,T01,sEMG: semimembranosus,10.422916665656253,MSF-MSE,rectified_envelope,
+Sub19,T01,sEMG: upper tibialis anterior,8.984374998187501,HS-MSF,rectified_envelope,
+Sub19,T01,sEMG: lower tibialis anterior,8.976562498859376,HS-MSF,rectified_envelope,
+Sub19,T01,sEMG: lateral gastrocnemius,13.6822916643125,MSE-TO,rectified_envelope,
+Sub19,T01,sEMG: medial gastrocnemius,13.658854165687504,MSE-TO,rectified_envelope,
+Sub19,T01,sEMG: soleus,4.797395831375001,MSE-TO,rectified_envelope,
+Sub20,T01,Kinetic: left hip adduction torque,3.939062502265625,MSE-TO,,maximum
+Sub20,T01,Kinetic: left hip flexion torque,1.7208333363125,MSE-TO,,maximum
+Sub20,T01,Kinetic: left knee flexion torque,11.321354173265629,HS-MSF,,maximum
+Sub20,T01,Kinetic: left ankle flexion torque,9.631250003078126,TO-MWF,,maximum
+Sub20,T01,Kinetic: right hip adduction torque,3.522395832265625,MSF-MSE,,maximum
+Sub20,T01,Kinetic: right hip flexion torque,1.11979166978125,MWF-HS,,maximum
+Sub20,T01,Kinetic: right knee flexion torque,1.7541666663125,MSE-TO,,maximum
+Sub20,T01,Kinetic: right ankle flexion torque,7.722395838609376,MSF-MSE,,maximum
+Sub20,T01,sEMG: tensor fascia lata,6.446875004093751,MSF-MSE,rectified_envelope,
+Sub20,T01,sEMG: rectus femoris,8.996875002968752,MSF-MSE,rectified_envelope,
+Sub20,T01,sEMG: vastus medialis,10.168229171437504,HS-MSF,rectified_envelope,
+Sub20,T01,sEMG: semimembranosus,8.158333338031252,MSE-TO,rectified_envelope,
+Sub20,T01,sEMG: upper tibialis anterior,10.932812505109377,TO-MWF,rectified_envelope,
+Sub20,T01,sEMG: lower tibialis anterior,2.80677083415625,MSE-TO,rectified_envelope,
+Sub20,T01,sEMG: lateral gastrocnemius,11.895312503921875,MSE-TO,rectified_envelope,
+Sub20,T01,sEMG: medial gastrocnemius,11.836458337968752,MSE-TO,rectified_envelope,
+Sub20,T01,sEMG: soleus,10.665104171843751,MSE-TO,rectified_envelope,
+Sub21,T01,Kinetic: left hip adduction torque,2.882291668906251,MSE-TO,,maximum
+Sub21,T01,Kinetic: left hip flexion torque,8.924479160765625,MSE-TO,,maximum
+Sub21,T01,Kinetic: left knee flexion torque,0.4333333355,MSE-TO,,maximum
+Sub21,T01,Kinetic: left ankle flexion torque,8.431249993625,HS-MSF,,maximum
+Sub21,T01,Kinetic: right hip adduction torque,2.815624998906251,MSE-TO,,maximum
+Sub21,T01,Kinetic: right hip flexion torque,3.348958333406251,MWF-HS,,maximum
+Sub21,T01,Kinetic: right knee flexion torque,6.0536458294375,MWF-HS,,maximum
+Sub21,T01,Kinetic: right ankle flexion torque,8.514583328125001,MSF-MSE,,maximum
+Sub21,T01,sEMG: tensor fascia lata,1.220312498578125,HS-MSF,rectified_envelope,
+Sub21,T01,sEMG: rectus femoris,7.365104161796875,HS-MSF,rectified_envelope,
+Sub21,T01,sEMG: vastus medialis,8.4359374945625,HS-MSF,rectified_envelope,
+Sub21,T01,sEMG: semimembranosus,6.111979162187501,MWF-HS,rectified_envelope,
+Sub21,T01,sEMG: upper tibialis anterior,7.502083329296875,MSF-MSE,rectified_envelope,
+Sub21,T01,sEMG: lower tibialis anterior,6.884374993406251,TO-MWF,rectified_envelope,
+Sub21,T01,sEMG: lateral gastrocnemius,5.015104164343751,MSE-TO,rectified_envelope,
+Sub21,T01,sEMG: medial gastrocnemius,7.799479162109376,MSE-TO,rectified_envelope,
+Sub21,T01,sEMG: soleus,1.29791666759375,MSF-MSE,rectified_envelope,
+Sub22,T01,Kinetic: left hip adduction torque,3.561458331843751,MSE-TO,,maximum
+Sub22,T01,Kinetic: left hip flexion torque,12.667708335531252,MSE-TO,,maximum
+Sub22,T01,Kinetic: left knee flexion torque,6.216145835703126,MSE-TO,,maximum
+Sub22,T01,Kinetic: left ankle flexion torque,9.29375000425,HS-MSF,,maximum
+Sub22,T01,Kinetic: right hip adduction torque,3.478124997343751,MSE-TO,,maximum
+Sub22,T01,Kinetic: right hip flexion torque,1.453125000625,MWF-HS,,maximum
+Sub22,T01,Kinetic: right knee flexion torque,3.461458331843751,MSE-TO,,maximum
+Sub22,T01,Kinetic: right ankle flexion torque,0.75,MSE-TO,,maximum
+Sub22,T01,sEMG: tensor fascia lata,7.903645832859376,MSF-MSE,rectified_envelope,
+Sub22,T01,sEMG: rectus femoris,7.741666666187501,HS-MSF,rectified_envelope,
+Sub22,T01,sEMG: vastus medialis,7.798437499046876,HS-MSF,rectified_envelope,
+Sub22,T01,sEMG: semimembranosus,12.033333333500002,HS-MSF,rectified_envelope,
+Sub22,T01,sEMG: upper tibialis anterior,8.041666666187501,MSF-MSE,rectified_envelope,
+Sub22,T01,sEMG: lower tibialis anterior,8.038020833109377,MSF-MSE,rectified_envelope,
+Sub22,T01,sEMG: lateral gastrocnemius,11.173437503203129,MSE-TO,rectified_envelope,
+Sub22,T01,sEMG: medial gastrocnemius,3.228124997343751,MSE-TO,rectified_envelope,
+Sub22,T01,sEMG: soleus,9.4458333373125,MSF-MSE,rectified_envelope,
+Sub23,T01,Kinetic: left hip adduction torque,3.659895836875001,MSE-TO,,maximum
+Sub23,T01,Kinetic: left hip flexion torque,13.792708341921877,MSE-TO,,maximum
+Sub23,T01,Kinetic: left knee flexion torque,3.443229171375001,MSE-TO,,maximum
+Sub23,T01,Kinetic: left ankle flexion torque,8.907812505359377,HS-MSF,,maximum
+Sub23,T01,Kinetic: right hip adduction torque,6.075520836218752,MSE-TO,,maximum
+Sub23,T01,Kinetic: right hip flexion torque,1.432291667625,MWF-HS,,maximum
+Sub23,T01,Kinetic: right knee flexion torque,11.665104172343751,MWF-HS,,maximum
+Sub23,T01,Kinetic: right ankle flexion torque,4.903645837343752,MSE-TO,,maximum
+Sub23,T01,sEMG: tensor fascia lata,7.468750003937501,HS-MSF,rectified_envelope,
+Sub23,T01,sEMG: rectus femoris,13.218750005828127,HS-MSF,rectified_envelope,
+Sub23,T01,sEMG: vastus medialis,4.171875005937501,MWF-HS,rectified_envelope,
+Sub23,T01,sEMG: semimembranosus,12.432812504718754,MSE-TO,rectified_envelope,
+Sub23,T01,sEMG: upper tibialis anterior,6.364583337640626,MWF-HS,rectified_envelope,
+Sub23,T01,sEMG: lower tibialis anterior,10.710416672546875,MSF-MSE,rectified_envelope,
+Sub23,T01,sEMG: lateral gastrocnemius,4.864062506093751,MSE-TO,rectified_envelope,
+Sub23,T01,sEMG: medial gastrocnemius,4.851562504156251,MSE-TO,rectified_envelope,
+Sub23,T01,sEMG: soleus,7.803125001328127,MSF-MSE,rectified_envelope,
+Sub24,T01,Kinetic: left hip adduction torque,7.471875002265627,HS-MSF,,maximum
+Sub24,T01,Kinetic: left hip flexion torque,8.005208337765627,MSE-TO,,maximum
+Sub24,T01,Kinetic: left knee flexion torque,8.666666668234377,HS-MSF,,maximum
+Sub24,T01,Kinetic: left ankle flexion torque,6.375520835437501,HS-MSF,,maximum
+Sub24,T01,Kinetic: right hip adduction torque,0.621354169671875,MSE-TO,,maximum
+Sub24,T01,Kinetic: right hip flexion torque,4.566145836875001,MWF-HS,,maximum
+Sub24,T01,Kinetic: right knee flexion torque,2.931770835015626,MSE-TO,,maximum
+Sub24,T01,Kinetic: right ankle flexion torque,9.985416669015628,MSF-MSE,,maximum
+Sub24,T01,sEMG: tensor fascia lata,3.632291668109376,MSF-MSE,rectified_envelope,
+Sub24,T01,sEMG: rectus femoris,6.413020836718751,HS-MSF,rectified_envelope,
+Sub24,T01,sEMG: vastus medialis,11.017187504796876,HS-MSF,rectified_envelope,
+Sub24,T01,sEMG: semimembranosus,7.494270835578126,HS-MSF,rectified_envelope,
+Sub24,T01,sEMG: upper tibialis anterior,6.487500001546876,MSF-MSE,rectified_envelope,
+Sub24,T01,sEMG: lower tibialis anterior,11.014583337609375,HS-MSF,rectified_envelope,
+Sub24,T01,sEMG: lateral gastrocnemius,6.858854170593752,MSE-TO,rectified_envelope,
+Sub24,T01,sEMG: medial gastrocnemius,5.055729169250001,MSE-TO,rectified_envelope,
+Sub24,T01,sEMG: soleus,6.858854170593752,MSE-TO,rectified_envelope,
+Sub25,T01,Kinetic: left hip adduction torque,9.846874992203126,HS-MSF,,maximum
+Sub25,T01,Kinetic: left hip flexion torque,10.363541662203126,MSE-TO,,maximum
+Sub25,T01,Kinetic: left knee flexion torque,9.846874992203126,HS-MSF,,maximum
+Sub25,T01,Kinetic: left ankle flexion torque,5.62031249746875,HS-MSF,,maximum
+Sub25,T01,Kinetic: right hip adduction torque,3.559374996046876,MSE-TO,,maximum
+Sub25,T01,Kinetic: right hip flexion torque,2.042187497578126,MWF-HS,,maximum
+Sub25,T01,Kinetic: right knee flexion torque,3.559374996046876,MSE-TO,,maximum
+Sub25,T01,Kinetic: right ankle flexion torque,5.738541665546875,MSF-MSE,,maximum
+Sub25,T01,sEMG: tensor fascia lata,2.2057291645625,MSF-MSE,rectified_envelope,
+Sub25,T01,sEMG: rectus femoris,7.805208330109376,HS-MSF,rectified_envelope,
+Sub25,T01,sEMG: vastus medialis,6.7541666641875,HS-MSF,rectified_envelope,
+Sub25,T01,sEMG: semimembranosus,7.728124997,HS-MSF,rectified_envelope,
+Sub25,T01,sEMG: upper tibialis anterior,8.84635416353125,HS-MSF,rectified_envelope,
+Sub25,T01,sEMG: lower tibialis anterior,0.71510416590625,TO-MWF,rectified_envelope,
+Sub25,T01,sEMG: lateral gastrocnemius,1.474479166203125,MSE-TO,rectified_envelope,
+Sub25,T01,sEMG: medial gastrocnemius,1.47604166634375,MSE-TO,rectified_envelope,
+Sub25,T01,sEMG: soleus,2.630729165265626,MSE-TO,rectified_envelope,
+Sub26,T01,Kinetic: left hip adduction torque,4.755729160343751,TO-MWF,,maximum
+Sub26,T01,Kinetic: left hip flexion torque,10.571874995750004,MSE-TO,,maximum
+Sub26,T01,Kinetic: left knee flexion torque,9.955208331250002,HS-MSF,,maximum
+Sub26,T01,Kinetic: left ankle flexion torque,7.342187497312501,HS-MSF,,maximum
+Sub26,T01,Kinetic: right hip adduction torque,4.588020828843751,MSE-TO,,maximum
+Sub26,T01,Kinetic: right hip flexion torque,2.663020827625001,MWF-HS,,maximum
+Sub26,T01,Kinetic: right knee flexion torque,6.545312494843752,MWF-HS,,maximum
+Sub26,T01,Kinetic: right ankle flexion torque,8.874999998953127,MSF-MSE,,maximum
+Sub26,T01,sEMG: tensor fascia lata,7.422916660828127,HS-MSF,rectified_envelope,
+Sub26,T01,sEMG: rectus femoris,4.147395827625001,MSF-MSE,rectified_envelope,
+Sub26,T01,sEMG: vastus medialis,10.377083328718752,MSF-MSE,rectified_envelope,
+Sub26,T01,sEMG: semimembranosus,6.014583326390627,MSE-TO,rectified_envelope,
+Sub26,T01,sEMG: upper tibialis anterior,4.157291660234375,MSF-MSE,rectified_envelope,
+Sub26,T01,sEMG: lower tibialis anterior,4.151041660671876,MSF-MSE,rectified_envelope,
+Sub26,T01,sEMG: lateral gastrocnemius,11.881249994531252,MSE-TO,rectified_envelope,
+Sub26,T01,sEMG: medial gastrocnemius,13.222916663390627,MSE-TO,rectified_envelope,
+Sub26,T01,sEMG: soleus,10.546354162812502,MSE-TO,rectified_envelope,
+Sub27,T01,Kinetic: left hip adduction torque,3.912499999828125,TO-MWF,,maximum
+Sub27,T01,Kinetic: left hip flexion torque,11.758333337296875,TO-MWF,,maximum
+Sub27,T01,Kinetic: left knee flexion torque,2.147395837890625,MSE-TO,,maximum
+Sub27,T01,Kinetic: left ankle flexion torque,13.525000005234377,HS-MSF,,maximum
+Sub27,T01,Kinetic: right hip adduction torque,2.214062502390625,MSE-TO,,maximum
+Sub27,T01,Kinetic: right hip flexion torque,3.179166669828125,MSF-MSE,,maximum
+Sub27,T01,Kinetic: right knee flexion torque,7.0557291655625,MWF-HS,,maximum
+Sub27,T01,Kinetic: right ankle flexion torque,5.062500000390625,MSE-TO,,maximum
+Sub27,T01,sEMG: tensor fascia lata,13.79218750340625,MSF-MSE,rectified_envelope,
+Sub27,T01,sEMG: rectus femoris,10.92187500103125,HS-MSF,rectified_envelope,
+Sub27,T01,sEMG: vastus medialis,13.646875003078126,HS-MSF,rectified_envelope,
+Sub27,T01,sEMG: semimembranosus,3.833333335953125,MSE-TO,rectified_envelope,
+Sub27,T01,sEMG: upper tibialis anterior,9.428125001140623,HS-MSF,rectified_envelope,
+Sub27,T01,sEMG: lower tibialis anterior,8.213020832890626,MSF-MSE,rectified_envelope,
+Sub27,T01,sEMG: lateral gastrocnemius,11.43229166696875,MSE-TO,rectified_envelope,
+Sub27,T01,sEMG: medial gastrocnemius,3.611458333234375,MSE-TO,rectified_envelope,
+Sub27,T01,sEMG: soleus,2.174479168328125,MSE-TO,rectified_envelope,
+Sub28,T01,Kinetic: left hip adduction torque,6.098437503703126,MSE-TO,,maximum
+Sub28,T01,Kinetic: left hip flexion torque,12.295312505109376,MSE-TO,,maximum
+Sub28,T01,Kinetic: left knee flexion torque,0.699479166703125,MSE-TO,,maximum
+Sub28,T01,Kinetic: left ankle flexion torque,13.128125002234375,HS-MSF,,maximum
+Sub28,T01,Kinetic: right hip adduction torque,2.058854165703126,MSE-TO,,maximum
+Sub28,T01,Kinetic: right hip flexion torque,4.010937502578126,MWF-HS,,maximum
+Sub28,T01,Kinetic: right knee flexion torque,7.332291668171877,MWF-HS,,maximum
+Sub28,T01,Kinetic: right ankle flexion torque,3.406770835078126,MSE-TO,,maximum
+Sub28,T01,sEMG: tensor fascia lata,4.904166671093751,TO-MWF,rectified_envelope,
+Sub28,T01,sEMG: rectus femoris,0.622916666890625,MSE-TO,rectified_envelope,
+Sub28,T01,sEMG: vastus medialis,0.269270832828125,MSF-MSE,rectified_envelope,
+Sub28,T01,sEMG: semimembranosus,10.198958337281251,HS-MSF,rectified_envelope,
+Sub28,T01,sEMG: upper tibialis anterior,1.898437500390625,MSF-MSE,rectified_envelope,
+Sub28,T01,sEMG: lower tibialis anterior,10.765104169203129,MSE-TO,rectified_envelope,
+Sub28,T01,sEMG: lateral gastrocnemius,9.340625002281252,MSE-TO,rectified_envelope,
+Sub28,T01,sEMG: medial gastrocnemius,9.348958337281251,MSE-TO,rectified_envelope,
+Sub28,T01,sEMG: soleus,1.794270834265626,MSF-MSE,rectified_envelope,
+Sub29,T01,Kinetic: left hip adduction torque,0.933333332578125,TO-MWF,,maximum
+Sub29,T01,Kinetic: left hip flexion torque,8.157291664875,MSE-TO,,maximum
+Sub29,T01,Kinetic: left knee flexion torque,6.035937496343751,MSE-TO,,maximum
+Sub29,T01,Kinetic: left ankle flexion torque,7.5187499984375,HS-MSF,,maximum
+Sub29,T01,Kinetic: right hip adduction torque,3.490624998125,MSE-TO,,maximum
+Sub29,T01,Kinetic: right hip flexion torque,5.465104162921875,MWF-HS,,maximum
+Sub29,T01,Kinetic: right knee flexion torque,5.320312495890626,MWF-HS,,maximum
+Sub29,T01,Kinetic: right ankle flexion torque,7.653124997375,MSF-MSE,,maximum
+Sub29,T01,sEMG: tensor fascia lata,8.953645830812501,HS-MSF,rectified_envelope,
+Sub29,T01,sEMG: rectus femoris,4.534374996875,MSF-MSE,rectified_envelope,
+Sub29,T01,sEMG: vastus medialis,9.244270828937502,MSF-MSE,rectified_envelope,
+Sub29,T01,sEMG: semimembranosus,11.704687495109376,HS-MSF,rectified_envelope,
+Sub29,T01,sEMG: upper tibialis anterior,7.514062499046876,HS-MSF,rectified_envelope,
+Sub29,T01,sEMG: lower tibialis anterior,10.53333332675,MSF-MSE,rectified_envelope,
+Sub29,T01,sEMG: lateral gastrocnemius,12.3437499961875,MSE-TO,rectified_envelope,
+Sub29,T01,sEMG: medial gastrocnemius,0.659895832109375,MSE-TO,rectified_envelope,
+Sub29,T01,sEMG: soleus,10.4869791608125,MSF-MSE,rectified_envelope,
+Sub30,T01,Kinetic: left hip adduction torque,3.987499997859376,TO-MWF,,maximum
+Sub30,T01,Kinetic: left hip flexion torque,1.632812498625,MSE-TO,,maximum
+Sub30,T01,Kinetic: left knee flexion torque,4.864062499937502,MSE-TO,,maximum
+Sub30,T01,Kinetic: left ankle flexion torque,9.577604172859376,HS-MSF,,maximum
+Sub30,T01,Kinetic: right hip adduction torque,0.55937499878125,MSE-TO,,maximum
+Sub30,T01,Kinetic: right hip flexion torque,1.09270833428125,MWF-HS,,maximum
+Sub30,T01,Kinetic: right knee flexion torque,4.964062499937501,MSE-TO,,maximum
+Sub30,T01,Kinetic: right ankle flexion torque,6.161458338250002,HS-MSF,,maximum
+Sub30,T01,sEMG: tensor fascia lata,9.218229170984376,MWF-HS,rectified_envelope,
+Sub30,T01,sEMG: rectus femoris,8.505208336593752,MSF-MSE,rectified_envelope,
+Sub30,T01,sEMG: vastus medialis,0.67708333115625,TO-MWF,rectified_envelope,
+Sub30,T01,sEMG: semimembranosus,7.110937504812502,MWF-HS,rectified_envelope,
+Sub30,T01,sEMG: upper tibialis anterior,3.447395830500001,MSF-MSE,rectified_envelope,
+Sub30,T01,sEMG: lower tibialis anterior,9.608333336375,HS-MSF,rectified_envelope,
+Sub30,T01,sEMG: lateral gastrocnemius,7.782291669421877,MSE-TO,rectified_envelope,
+Sub30,T01,sEMG: medial gastrocnemius,8.914062504890627,MSE-TO,rectified_envelope,
+Sub30,T01,sEMG: soleus,6.540104168578127,MSE-TO,rectified_envelope,
+Sub31,T01,Kinetic: left hip adduction torque,3.234375003078125,TO-MWF,,maximum
+Sub31,T01,Kinetic: left hip flexion torque,8.616145834312501,MSE-TO,,maximum
+Sub31,T01,Kinetic: left knee flexion torque,9.24322916990625,HS-MSF,,maximum
+Sub31,T01,Kinetic: left ankle flexion torque,8.03333333225,HS-MSF,,maximum
+Sub31,T01,Kinetic: right hip adduction torque,5.524479162265625,MSE-TO,,maximum
+Sub31,T01,Kinetic: right hip flexion torque,1.207291666296875,MWF-HS,,maximum
+Sub31,T01,Kinetic: right knee flexion torque,1.831250002453125,MSE-TO,,maximum
+Sub31,T01,Kinetic: right ankle flexion torque,8.216666667750001,MSF-MSE,,maximum
+Sub31,T01,sEMG: tensor fascia lata,7.753124998375001,MWF-HS,rectified_envelope,
+Sub31,T01,sEMG: rectus femoris,2.680729169015625,MSF-MSE,rectified_envelope,
+Sub31,T01,sEMG: vastus medialis,8.1630208336875,MSF-MSE,rectified_envelope,
+Sub31,T01,sEMG: semimembranosus,10.510416668359376,HS-MSF,rectified_envelope,
+Sub31,T01,sEMG: upper tibialis anterior,5.115624996218751,MSF-MSE,rectified_envelope,
+Sub31,T01,sEMG: lower tibialis anterior,1.457291666296875,MSF-MSE,rectified_envelope,
+Sub31,T01,sEMG: lateral gastrocnemius,7.370833333218751,MSE-TO,rectified_envelope,
+Sub31,T01,sEMG: medial gastrocnemius,12.293229171109378,MSE-TO,rectified_envelope,
+Sub31,T01,sEMG: soleus,1.748958333546875,MSE-TO,rectified_envelope,
+Sub32,T01,Kinetic: left hip adduction torque,1.7166666675625,TO-MWF,,maximum
+Sub32,T01,Kinetic: left hip flexion torque,7.797916670234375,MSE-TO,,maximum
+Sub32,T01,Kinetic: left knee flexion torque,8.357291671125001,HS-MSF,,maximum
+Sub32,T01,Kinetic: left ankle flexion torque,6.081770835390626,HS-MSF,,maximum
+Sub32,T01,Kinetic: right hip adduction torque,0.5666666655,MSE-TO,,maximum
+Sub32,T01,Kinetic: right hip flexion torque,4.270312503859375,MWF-HS,,maximum
+Sub32,T01,Kinetic: right knee flexion torque,5.365625004187501,MWF-HS,,maximum
+Sub32,T01,Kinetic: right ankle flexion torque,7.414583335734376,MSF-MSE,,maximum
+Sub32,T01,sEMG: tensor fascia lata,2.602604170671875,MSF-MSE,rectified_envelope,
+Sub32,T01,sEMG: rectus femoris,8.593750003859377,MSF-MSE,rectified_envelope,
+Sub32,T01,sEMG: vastus medialis,10.682291671328128,HS-MSF,rectified_envelope,
+Sub32,T01,sEMG: semimembranosus,8.365625006125,HS-MSF,rectified_envelope,
+Sub32,T01,sEMG: upper tibialis anterior,6.143750001218751,HS-MSF,rectified_envelope,
+Sub32,T01,sEMG: lower tibialis anterior,8.071875006171876,MWF-HS,rectified_envelope,
+Sub32,T01,sEMG: lateral gastrocnemius,8.862500005500001,MSE-TO,rectified_envelope,
+Sub32,T01,sEMG: medial gastrocnemius,9.87656250225,MSF-MSE,rectified_envelope,
+Sub32,T01,sEMG: soleus,8.882291671484376,MSE-TO,rectified_envelope,
+Sub33,T01,Kinetic: left hip adduction torque,4.168750003250001,TO-MWF,,maximum
+Sub33,T01,Kinetic: left hip flexion torque,2.780729168921876,MSE-TO,,maximum
+Sub33,T01,Kinetic: left knee flexion torque,7.478645835421877,HS-MSF,,maximum
+Sub33,T01,Kinetic: left ankle flexion torque,6.235416668218751,HS-MSF,,maximum
+Sub33,T01,Kinetic: right hip adduction torque,5.018229170078127,MSE-TO,,maximum
+Sub33,T01,Kinetic: right hip flexion torque,3.321354169578126,MWF-HS,,maximum
+Sub33,T01,Kinetic: right knee flexion torque,3.916666670187501,MSE-TO,,maximum
+Sub33,T01,Kinetic: right ankle flexion torque,8.843229167171877,MSF-MSE,,maximum
+Sub33,T01,sEMG: tensor fascia lata,3.445312501140626,MSF-MSE,rectified_envelope,
+Sub33,T01,sEMG: rectus femoris,0.120833334828125,HS-MSF,rectified_envelope,
+Sub33,T01,sEMG: vastus medialis,4.154166669578126,TO-MWF,rectified_envelope,
+Sub33,T01,sEMG: semimembranosus,0.171354168265625,MSF-MSE,rectified_envelope,
+Sub33,T01,sEMG: upper tibialis anterior,9.973958337328128,HS-MSF,rectified_envelope,
+Sub33,T01,sEMG: lower tibialis anterior,0.748437500109375,TO-MWF,rectified_envelope,
+Sub33,T01,sEMG: lateral gastrocnemius,0.134375001625,HS-MSF,rectified_envelope,
+Sub33,T01,sEMG: medial gastrocnemius,0.425000002328125,MSE-TO,rectified_envelope,
+Sub33,T01,sEMG: soleus,1.675520835515625,MSE-TO,rectified_envelope,
+Sub34,T01,Kinetic: left hip adduction torque,0.6359374971875,MSE-TO,,maximum
+Sub34,T01,Kinetic: left hip flexion torque,10.750520835265627,MSE-TO,,maximum
+Sub34,T01,Kinetic: left knee flexion torque,9.23229167025,HS-MSF,,maximum
+Sub34,T01,Kinetic: left ankle flexion torque,6.113541671000001,HS-MSF,,maximum
+Sub34,T01,Kinetic: right hip adduction torque,2.741145830296875,MSE-TO,,maximum
+Sub34,T01,Kinetic: right hip flexion torque,2.13124999765625,MWF-HS,,maximum
+Sub34,T01,Kinetic: right knee flexion torque,0.5692708316875,MSE-TO,,maximum
+Sub34,T01,Kinetic: right ankle flexion torque,1.678124997875,MSE-TO,,maximum
+Sub34,T01,sEMG: tensor fascia lata,10.345833335593753,HS-MSF,rectified_envelope,
+Sub34,T01,sEMG: rectus femoris,4.586979168671876,HS-MSF,rectified_envelope,
+Sub34,T01,sEMG: vastus medialis,6.904166671875002,MWF-HS,rectified_envelope,
+Sub34,T01,sEMG: semimembranosus,3.2343749974375,MWF-HS,rectified_envelope,
+Sub34,T01,sEMG: upper tibialis anterior,10.010416669453129,MWF-HS,rectified_envelope,
+Sub34,T01,sEMG: lower tibialis anterior,1.856770833609375,MWF-HS,rectified_envelope,
+Sub34,T01,sEMG: lateral gastrocnemius,9.3463541730625,HS-MSF,rectified_envelope,
+Sub34,T01,sEMG: medial gastrocnemius,0.40781249984375,MSF-MSE,rectified_envelope,
+Sub34,T01,sEMG: soleus,3.822916667750001,MSE-TO,rectified_envelope,
+Sub35,T01,Kinetic: left hip adduction torque,0.857291668125,TO-MWF,,maximum
+Sub35,T01,Kinetic: left hip flexion torque,13.560416660890628,MSE-TO,,maximum
+Sub35,T01,Kinetic: left knee flexion torque,8.165624993890626,MSF-MSE,,maximum
+Sub35,T01,Kinetic: left ankle flexion torque,10.414062498906253,HS-MSF,,maximum
+Sub35,T01,Kinetic: right hip adduction torque,0.690624998125,MSE-TO,,maximum
+Sub35,T01,Kinetic: right hip flexion torque,1.323958332625,MWF-HS,,maximum
+Sub35,T01,Kinetic: right knee flexion torque,9.009895827968752,MWF-HS,,maximum
+Sub35,T01,Kinetic: right ankle flexion torque,0.690624998125,MSE-TO,,maximum
+Sub35,T01,sEMG: tensor fascia lata,10.568749998296877,MSF-MSE,rectified_envelope,
+Sub35,T01,sEMG: rectus femoris,1.5364583310625,MSF-MSE,rectified_envelope,
+Sub35,T01,sEMG: vastus medialis,9.397916662859377,MSF-MSE,rectified_envelope,
+Sub35,T01,sEMG: semimembranosus,9.122916660390626,HS-MSF,rectified_envelope,
+Sub35,T01,sEMG: upper tibialis anterior,10.466145831968753,HS-MSF,rectified_envelope,
+Sub35,T01,sEMG: lower tibialis anterior,10.122916664421876,MWF-HS,rectified_envelope,
+Sub35,T01,sEMG: lateral gastrocnemius,9.726041660171877,MSE-TO,rectified_envelope,
+Sub35,T01,sEMG: medial gastrocnemius,8.17968749290625,MSF-MSE,rectified_envelope,
+Sub35,T01,sEMG: soleus,13.536979161703126,MSE-TO,rectified_envelope,
+Sub36,T01,Kinetic: left hip adduction torque,4.004166663390626,MWF-HS,,maximum
+Sub36,T01,Kinetic: left hip flexion torque,2.112499998375001,MSE-TO,,maximum
+Sub36,T01,Kinetic: left knee flexion torque,13.397916662218751,HS-MSF,,maximum
+Sub36,T01,Kinetic: left ankle flexion torque,13.414583329265628,HS-MSF,,maximum
+Sub36,T01,Kinetic: right hip adduction torque,3.437499998890626,MSE-TO,,maximum
+Sub36,T01,Kinetic: right hip flexion torque,2.749999997703125,MWF-HS,,maximum
+Sub36,T01,Kinetic: right knee flexion torque,3.437499998890626,MSE-TO,,maximum
+Sub36,T01,Kinetic: right ankle flexion torque,7.848437497718752,MSF-MSE,,maximum
+Sub36,T01,sEMG: tensor fascia lata,9.2343749951875,HS-MSF,rectified_envelope,
+Sub36,T01,sEMG: rectus femoris,13.518229163328128,HS-MSF,rectified_envelope,
+Sub36,T01,sEMG: vastus medialis,0.2015625003125,MSF-MSE,rectified_envelope,
+Sub36,T01,sEMG: semimembranosus,9.234895828625003,HS-MSF,rectified_envelope,
+Sub36,T01,sEMG: upper tibialis anterior,0.3598958353125,MSF-MSE,rectified_envelope,
+Sub36,T01,sEMG: lower tibialis anterior,0.355208334375,MSF-MSE,rectified_envelope,
+Sub36,T01,sEMG: lateral gastrocnemius,13.981770830640627,MSE-TO,rectified_envelope,
+Sub36,T01,sEMG: medial gastrocnemius,12.553124994968751,MSE-TO,rectified_envelope,
+Sub36,T01,sEMG: soleus,0.723958333828125,MSE-TO,rectified_envelope,
+Sub37,T01,Kinetic: left hip adduction torque,3.348437498156251,MWF-HS,,maximum
+Sub37,T01,Kinetic: left hip flexion torque,4.158333330796876,MSE-TO,,maximum
+Sub37,T01,Kinetic: left knee flexion torque,3.54843749815625,MWF-HS,,maximum
+Sub37,T01,Kinetic: left ankle flexion torque,6.459895835781252,HS-MSF,,maximum
+Sub37,T01,Kinetic: right hip adduction torque,4.175000000796876,MSE-TO,,maximum
+Sub37,T01,Kinetic: right hip flexion torque,5.712500002109376,MWF-HS,,maximum
+Sub37,T01,Kinetic: right knee flexion torque,5.195833332109376,MSE-TO,,maximum
+Sub37,T01,Kinetic: right ankle flexion torque,4.191666665296876,MSE-TO,,maximum
+Sub37,T01,sEMG: tensor fascia lata,9.126041666734375,HS-MSF,rectified_envelope,
+Sub37,T01,sEMG: rectus femoris,2.70677083090625,MSF-MSE,rectified_envelope,
+Sub37,T01,sEMG: vastus medialis,5.428645833343752,MWF-HS,rectified_envelope,
+Sub37,T01,sEMG: semimembranosus,10.417708331718751,MSF-MSE,rectified_envelope,
+Sub37,T01,sEMG: upper tibialis anterior,11.624999997875,HS-MSF,rectified_envelope,
+Sub37,T01,sEMG: lower tibialis anterior,7.776562500312501,HS-MSF,rectified_envelope,
+Sub37,T01,sEMG: lateral gastrocnemius,2.654166664421875,HS-MSF,rectified_envelope,
+Sub37,T01,sEMG: medial gastrocnemius,6.881770833656251,MSF-MSE,rectified_envelope,
+Sub37,T01,sEMG: soleus,4.754166667109376,HS-MSF,rectified_envelope,
+Sub38,T01,Kinetic: left hip adduction torque,3.553125000078125,MSE-TO,,maximum
+Sub38,T01,Kinetic: left hip flexion torque,3.469791670078125,MSE-TO,,maximum
+Sub38,T01,Kinetic: left knee flexion torque,6.583854174328126,HS-MSF,,maximum
+Sub38,T01,Kinetic: left ankle flexion torque,5.493229173390625,HS-MSF,,maximum
+Sub38,T01,Kinetic: right hip adduction torque,2.476562500109375,MSE-TO,,maximum
+Sub38,T01,Kinetic: right hip flexion torque,1.944791668171875,MWF-HS,,maximum
+Sub38,T01,Kinetic: right knee flexion torque,8.539583339109377,MWF-HS,,maximum
+Sub38,T01,Kinetic: right ankle flexion torque,1.441145834109375,MSE-TO,,maximum
+Sub38,T01,sEMG: tensor fascia lata,5.592708339953125,HS-MSF,rectified_envelope,
+Sub38,T01,sEMG: rectus femoris,0.69895833340625,TO-MWF,rectified_envelope,
+Sub38,T01,sEMG: vastus medialis,3.300000000296875,MSF-MSE,rectified_envelope,
+Sub38,T01,sEMG: semimembranosus,7.661458342046876,HS-MSF,rectified_envelope,
+Sub38,T01,sEMG: upper tibialis anterior,5.6489583393125,MSF-MSE,rectified_envelope,
+Sub38,T01,sEMG: lower tibialis anterior,7.029166673390625,MSF-MSE,rectified_envelope,
+Sub38,T01,sEMG: lateral gastrocnemius,4.411979168515625,MSE-TO,rectified_envelope,
+Sub38,T01,sEMG: medial gastrocnemius,5.834375004953126,MSF-MSE,rectified_envelope,
+Sub38,T01,sEMG: soleus,1.45729166878125,MSE-TO,rectified_envelope,
+Sub39,T01,Kinetic: left hip adduction torque,3.835937498921875,MSE-TO,,maximum
+Sub39,T01,Kinetic: left hip flexion torque,9.696354169453128,MSE-TO,,maximum
+Sub39,T01,Kinetic: left knee flexion torque,7.032812501406251,HS-MSF,,maximum
+Sub39,T01,Kinetic: left ankle flexion torque,7.06614583140625,HS-MSF,,maximum
+Sub39,T01,Kinetic: right hip adduction torque,0.5520833330625,MSE-TO,,maximum
+Sub39,T01,Kinetic: right hip flexion torque,2.124479164484375,MWF-HS,,maximum
+Sub39,T01,Kinetic: right knee flexion torque,1.624479164484375,MSE-TO,,maximum
+Sub39,T01,Kinetic: right ankle flexion torque,2.723437497828125,MSE-TO,,maximum
+Sub39,T01,sEMG: tensor fascia lata,8.195833333687501,HS-MSF,rectified_envelope,
+Sub39,T01,sEMG: rectus femoris,1.240625001046875,HS-MSF,rectified_envelope,
+Sub39,T01,sEMG: vastus medialis,0.134895835125,HS-MSF,rectified_envelope,
+Sub39,T01,sEMG: semimembranosus,8.096354167125,HS-MSF,rectified_envelope,
+Sub39,T01,sEMG: upper tibialis anterior,2.279687497390625,HS-MSF,rectified_envelope,
+Sub39,T01,sEMG: lower tibialis anterior,8.18229166571875,HS-MSF,rectified_envelope,
+Sub39,T01,sEMG: lateral gastrocnemius,9.655208334968751,MSE-TO,rectified_envelope,
+Sub39,T01,sEMG: medial gastrocnemius,8.580729165828126,MSE-TO,rectified_envelope,
+Sub39,T01,sEMG: soleus,7.551041665796876,MSE-TO,rectified_envelope,
+Sub40,T01,Kinetic: left hip adduction torque,3.376562505859375,MWF-HS,,maximum
+Sub40,T01,Kinetic: left hip flexion torque,6.567187504890626,MSE-TO,,maximum
+Sub40,T01,Kinetic: left knee flexion torque,4.864062505109375,MSE-TO,,maximum
+Sub40,T01,Kinetic: left ankle flexion torque,6.053125005875001,HS-MSF,,maximum
+Sub40,T01,Kinetic: right hip adduction torque,3.250520838484375,MWF-HS,,maximum
+Sub40,T01,Kinetic: right hip flexion torque,1.053645833078125,MWF-HS,,maximum
+Sub40,T01,Kinetic: right knee flexion torque,2.650520838484375,MSE-TO,,maximum
+Sub40,T01,Kinetic: right ankle flexion torque,3.965625003671875,MSE-TO,,maximum
+Sub40,T01,sEMG: tensor fascia lata,0.87291666940625,MWF-HS,rectified_envelope,
+Sub40,T01,sEMG: rectus femoris,5.079687504015626,MSE-TO,rectified_envelope,
+Sub40,T01,sEMG: vastus medialis,2.833854173984375,MSE-TO,rectified_envelope,
+Sub40,T01,sEMG: semimembranosus,10.508854170968752,HS-MSF,rectified_envelope,
+Sub40,T01,sEMG: upper tibialis anterior,0.714062501828125,TO-MWF,rectified_envelope,
+Sub40,T01,sEMG: lower tibialis anterior,10.24687500190625,TO-MWF,rectified_envelope,
+Sub40,T01,sEMG: lateral gastrocnemius,4.915104171703126,MSE-TO,rectified_envelope,
+Sub40,T01,sEMG: medial gastrocnemius,6.522916672000001,MSE-TO,rectified_envelope,
+Sub40,T01,sEMG: soleus,6.507812505546876,MSE-TO,rectified_envelope,

@@ -1,0 +1,46 @@
+phase_interval,functional_phase,channel,mean,std,subject_count,task,label_schema,processing_level,ci95_low,ci95_high,insufficient_subject_count
+HS-MSF,loading_response,sEMG: tensor fascia lata,-0.017132735020164883,0.0010975930667862287,39,WAK,wak_5_interval,mean_aggregated,-0.019284017431065892,-0.014981452609263875,False
+HS-MSF,loading_response,sEMG: rectus femoris,-0.002244476497972842,0.0006865798123293677,39,WAK,wak_5_interval,mean_aggregated,-0.0035901729301384025,-0.0008987800658072811,False
+HS-MSF,loading_response,sEMG: vastus medialis,-0.010762964269014222,0.0013639385359757363,39,WAK,wak_5_interval,mean_aggregated,-0.013436283799526666,-0.008089644738501779,False
+HS-MSF,loading_response,sEMG: semimembranosus,-0.02481773555778305,0.001407653325308854,39,WAK,wak_5_interval,mean_aggregated,-0.027576736075388405,-0.022058735040177694,False
+HS-MSF,loading_response,sEMG: upper tibialis anterior,0.004087792578959505,0.0030138116839863453,39,WAK,wak_5_interval,mean_aggregated,-0.001819278321653732,0.009994863479572742,False
+HS-MSF,loading_response,sEMG: lower tibialis anterior,-0.03317421917359422,0.001171930931842052,39,WAK,wak_5_interval,mean_aggregated,-0.03547120380000464,-0.030877234547183798,False
+HS-MSF,loading_response,sEMG: lateral gastrocnemius,-0.002567175375318861,0.003928541805128389,39,WAK,wak_5_interval,mean_aggregated,-0.010267117313370504,0.005132766562732781,False
+HS-MSF,loading_response,sEMG: medial gastrocnemius,0.002764020599143093,0.0006120726295855514,39,WAK,wak_5_interval,mean_aggregated,0.0015643582451554123,0.003963682953130774,False
+HS-MSF,loading_response,sEMG: soleus,-0.004814390471294456,0.002294005035561314,39,WAK,wak_5_interval,mean_aggregated,-0.00931064034099463,-0.0003181406015942802,False
+MSE-TO,terminal_stance,sEMG: tensor fascia lata,-0.017290628865446793,0.0002451085187977796,39,WAK,wak_5_interval,mean_aggregated,-0.01777104156229044,-0.016810216168603145,False
+MSE-TO,terminal_stance,sEMG: rectus femoris,-0.0022357306221838817,0.00024700043040816564,39,WAK,wak_5_interval,mean_aggregated,-0.0027198514657838864,-0.001751609778583877,False
+MSE-TO,terminal_stance,sEMG: vastus medialis,-0.010507104708001596,0.0002960245488589188,39,WAK,wak_5_interval,mean_aggregated,-0.011087312823765077,-0.009926896592238115,False
+MSE-TO,terminal_stance,sEMG: semimembranosus,-0.0245699707487308,0.00045223677078410544,39,WAK,wak_5_interval,mean_aggregated,-0.025456354819467647,-0.023683586677993952,False
+MSE-TO,terminal_stance,sEMG: upper tibialis anterior,0.004898200830398854,0.000587226194478283,39,WAK,wak_5_interval,mean_aggregated,0.003747237489221419,0.006049164171576289,False
+MSE-TO,terminal_stance,sEMG: lower tibialis anterior,-0.033119478003558175,0.0003916245292898976,39,WAK,wak_5_interval,mean_aggregated,-0.033887062080966375,-0.032351893926149976,False
+MSE-TO,terminal_stance,sEMG: lateral gastrocnemius,-0.004189522203189793,0.00039888025372634316,39,WAK,wak_5_interval,mean_aggregated,-0.0049713275004934256,-0.0034077169058861607,False
+MSE-TO,terminal_stance,sEMG: medial gastrocnemius,0.0028891503727573814,0.0009832412164928967,39,WAK,wak_5_interval,mean_aggregated,0.0009619975884313039,0.004816303157083459,False
+MSE-TO,terminal_stance,sEMG: soleus,-0.0053650393728157915,0.00039570872502104834,39,WAK,wak_5_interval,mean_aggregated,-0.006140628473857046,-0.004589450271774537,False
+MSF-MSE,mid_stance_control,sEMG: tensor fascia lata,-0.01726636893719583,0.00032089661656967773,39,WAK,wak_5_interval,mean_aggregated,-0.017895326305672397,-0.01663741156871926,False
+MSF-MSE,mid_stance_control,sEMG: rectus femoris,-0.0024345306229155627,0.0004113296961354321,39,WAK,wak_5_interval,mean_aggregated,-0.0032407368273410096,-0.0016283244184901158,False
+MSF-MSE,mid_stance_control,sEMG: vastus medialis,-0.010501724680262267,0.0004095751899867342,39,WAK,wak_5_interval,mean_aggregated,-0.011304492052636266,-0.009698957307888268,False
+MSF-MSE,mid_stance_control,sEMG: semimembranosus,-0.02468690135377469,0.0005496603557697083,39,WAK,wak_5_interval,mean_aggregated,-0.02576423565108332,-0.023609567056466062,False
+MSF-MSE,mid_stance_control,sEMG: upper tibialis anterior,0.004953908519359743,0.0006733330073706831,39,WAK,wak_5_interval,mean_aggregated,0.0036341758249132036,0.006273641213806282,False
+MSF-MSE,mid_stance_control,sEMG: lower tibialis anterior,-0.03319153138494429,0.0003978686588695659,39,WAK,wak_5_interval,mean_aggregated,-0.03397135395632864,-0.03241170881355994,False
+MSF-MSE,mid_stance_control,sEMG: lateral gastrocnemius,-0.004656529337217217,0.0011808398371649991,39,WAK,wak_5_interval,mean_aggregated,-0.0069709754180606156,-0.002342083256373819,False
+MSF-MSE,mid_stance_control,sEMG: medial gastrocnemius,0.002812404614251423,0.0006229452152011288,39,WAK,wak_5_interval,mean_aggregated,0.0015914319924572105,0.004033377236045636,False
+MSF-MSE,mid_stance_control,sEMG: soleus,-0.0054895627085718894,0.000507638420288872,39,WAK,wak_5_interval,mean_aggregated,-0.006484534012338079,-0.0044945914048057,False
+MWF-HS,swing_recovery,sEMG: tensor fascia lata,-0.0172867198694326,0.0004157354035886682,39,WAK,wak_5_interval,mean_aggregated,-0.01810156126046639,-0.016471878478398812,False
+MWF-HS,swing_recovery,sEMG: rectus femoris,-0.0024234596715419234,0.0003285400630956647,39,WAK,wak_5_interval,mean_aggregated,-0.003067398195209426,-0.0017795211478744207,False
+MWF-HS,swing_recovery,sEMG: vastus medialis,-0.010762208219701884,0.0010385542598583988,39,WAK,wak_5_interval,mean_aggregated,-0.012797774569024346,-0.008726641870379422,False
+MWF-HS,swing_recovery,sEMG: semimembranosus,-0.02466108613760528,0.000499334757868997,39,WAK,wak_5_interval,mean_aggregated,-0.025639782263028515,-0.023682390012182045,False
+MWF-HS,swing_recovery,sEMG: upper tibialis anterior,0.004834177612947318,0.000502771148044961,39,WAK,wak_5_interval,mean_aggregated,0.0038487461627791947,0.005819609063115442,False
+MWF-HS,swing_recovery,sEMG: lower tibialis anterior,-0.033186870276858564,0.0004487587968836439,39,WAK,wak_5_interval,mean_aggregated,-0.034066437518750506,-0.03230730303496662,False
+MWF-HS,swing_recovery,sEMG: lateral gastrocnemius,-0.004158166740263986,0.00031039068732754955,39,WAK,wak_5_interval,mean_aggregated,-0.004766532487425983,-0.0035498009931019888,False
+MWF-HS,swing_recovery,sEMG: medial gastrocnemius,0.00281851345899815,0.0006015677563624903,39,WAK,wak_5_interval,mean_aggregated,0.001639440656527669,0.0039975862614686315,False
+MWF-HS,swing_recovery,sEMG: soleus,-0.0053395400766889315,0.00043787668073839525,39,WAK,wak_5_interval,mean_aggregated,-0.006197778370936186,-0.004481301782441677,False
+TO-MWF,push_off_to_swing_transition,sEMG: tensor fascia lata,-0.017569887687790865,0.0009149303562442397,39,WAK,wak_5_interval,mean_aggregated,-0.019363151186029576,-0.015776624189552155,False
+TO-MWF,push_off_to_swing_transition,sEMG: rectus femoris,-0.0024300420324992657,0.0004608621909924081,39,WAK,wak_5_interval,mean_aggregated,-0.0033333319268443857,-0.0015267521381541458,False
+TO-MWF,push_off_to_swing_transition,sEMG: vastus medialis,-0.010355747774143359,0.0021153653180308704,39,WAK,wak_5_interval,mean_aggregated,-0.014501863797483864,-0.006209631750802853,False
+TO-MWF,push_off_to_swing_transition,sEMG: semimembranosus,-0.024442636635902775,0.000709041731814965,39,WAK,wak_5_interval,mean_aggregated,-0.025832358430260105,-0.023052914841545445,False
+TO-MWF,push_off_to_swing_transition,sEMG: upper tibialis anterior,0.004687352490222081,0.0005789581661654679,39,WAK,wak_5_interval,mean_aggregated,0.003552594484537764,0.0058221104959063985,False
+TO-MWF,push_off_to_swing_transition,sEMG: lower tibialis anterior,-0.03324482581822149,0.0005907372801410012,39,WAK,wak_5_interval,mean_aggregated,-0.03440267088729785,-0.03208698074914513,False
+TO-MWF,push_off_to_swing_transition,sEMG: lateral gastrocnemius,-0.0041706312378836236,0.0008207614927611367,39,WAK,wak_5_interval,mean_aggregated,-0.005779323763695452,-0.0025619387120717953,False
+TO-MWF,push_off_to_swing_transition,sEMG: medial gastrocnemius,0.002677286549584404,0.0006512324695240731,39,WAK,wak_5_interval,mean_aggregated,0.0014008709093172207,0.0039537021898515875,False
+TO-MWF,push_off_to_swing_transition,sEMG: soleus,-0.00553310399352275,0.0005227317653973208,39,WAK,wak_5_interval,mean_aggregated,-0.006557658253701499,-0.0045085497333440016,False
