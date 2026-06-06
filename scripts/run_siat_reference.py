@@ -4,7 +4,8 @@ import pandas as pd
 from pathlib import Path
 
 from gait_rehab.siat import discover_siat_pairs, validate_siat_data_schema
-from gait_rehab.siat_atlas import build_siat_wak_reference_atlas, compute_wak_window_quality
+from gait_rehab.siat_labels import validate_wak_label_schema, join_wak_data_and_labels
+from gait_rehab.siat_atlas import build_siat_wak_reference_atlas, compute_wak_window_quality, validate_wak_atlas_coverage
 
 def build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(description="Standalone SIAT WAK Reference Atlas generator")
@@ -12,39 +13,41 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--output-root", type=Path, required=True, help="Path to output directory")
     return parser
 
-def load_and_join_pair(subject_id: str, data_path: Path, label_path: Path) -> pd.DataFrame:
+def process_pair(subject_id: str, data_path: Path, label_path: Path) -> tuple[pd.DataFrame, dict, pd.DataFrame]:
     try:
         data_df = pd.read_csv(data_path)
         label_df = pd.read_csv(label_path)
     except Exception as e:
         print(f"Error reading files for {subject_id}: {e}")
-        return pd.DataFrame()
+        return pd.DataFrame(), {"schema_status": "error", "reportability_status": "unreportable"}, pd.DataFrame()
         
-    if "Time" not in data_df.columns or "Time" not in label_df.columns:
-        print(f"Missing 'Time' column in {subject_id} files.")
-        return pd.DataFrame()
+    # Schema validation
+    try:
+        data_schema = validate_siat_data_schema(data_df, data_path)
+        validate_wak_label_schema(label_df, label_path)
+    except Exception as e:
+        print(f"Schema validation failed for {subject_id}: {e}")
+        return pd.DataFrame(), {"schema_status": "invalid", "reportability_status": "unreportable"}, pd.DataFrame()
         
-    merged = pd.merge(data_df, label_df, on="Time", how="inner")
+    schema_status = "inferred" if data_schema.schema_inferred_from_position else "named_columns"
+    reportability = "reportable" if schema_status == "named_columns" else "unreportable"
     
-    # Map Status 1-5 to phase intervals as required
-    status_map = {
-        1: "Loading Response",
-        2: "Mid Stance",
-        3: "Terminal Stance",
-        4: "Pre Swing",
-        5: "Swing"
+    if reportability == "unreportable":
+        return pd.DataFrame(), {"schema_status": schema_status, "reportability_status": reportability}, pd.DataFrame()
+        
+    # Tolerant Join and Phase mapping
+    try:
+        joined_valid, quality_df = join_wak_data_and_labels(data_df, label_df, subject_id, "T01", time_tolerance_sec=0.05)
+    except Exception as e:
+        print(f"Join failed for {subject_id}: {e}")
+        return pd.DataFrame(), {"schema_status": schema_status, "reportability_status": "unreportable"}, pd.DataFrame()
+        
+    status_dict = {
+        "schema_status": schema_status,
+        "reportability_status": reportability
     }
     
-    if "Status" in merged.columns:
-        merged["phase_interval"] = merged["Status"].map(status_map).fillna("Unknown")
-        merged["functional_phase"] = merged["phase_interval"]
-    else:
-        merged["phase_interval"] = "Unknown"
-        merged["functional_phase"] = "Unknown"
-        
-    merged["subject_id"] = subject_id
-    merged["trial_id"] = "T01"  # Default single trial for continuous WAK recording
-    return merged
+    return joined_valid, status_dict, quality_df
 
 def main() -> None:
     parser = build_parser()
@@ -66,23 +69,27 @@ def main() -> None:
     
     all_samples = []
     inventory = []
+    join_qualities = []
     
     for _, row in pairs_df.iterrows():
         subj = row["subject_id"]
         status = "paired" if row["has_data"] and row["has_label"] else "unpaired"
         
         if status == "paired":
-            df = load_and_join_pair(subj, row["data_path"], row["label_path"])
+            df, status_dict, quality_df = process_pair(subj, row["data_path"], row["label_path"])
             if not df.empty:
                 all_samples.append(df)
-                inventory.append({
-                    "subject_id": subj,
-                    "file_pair_status": status,
-                    "schema_status": "named_columns",
-                    "wak_label_status": "valid",
-                    "coverage_status": "pass",
-                    "reportability_status": "reportable"
-                })
+            if not quality_df.empty:
+                join_qualities.append(quality_df)
+                
+            inventory.append({
+                "subject_id": subj,
+                "file_pair_status": status,
+                "schema_status": status_dict.get("schema_status", "unknown"),
+                "wak_label_status": "valid" if not df.empty else "invalid",
+                "coverage_status": "pass" if not df.empty else "fail",
+                "reportability_status": status_dict.get("reportability_status", "unreportable")
+            })
         else:
             inventory.append({
                 "subject_id": subj,
@@ -93,22 +100,39 @@ def main() -> None:
                 "reportability_status": "unreportable"
             })
             
+    # Save Join Quality metrics
+    if join_qualities:
+        pd.concat(join_qualities, ignore_index=True).to_csv(tables_dir / "siat_wak_join_quality.csv", index=False)
+    else:
+        pd.DataFrame().to_csv(tables_dir / "siat_wak_join_quality.csv", index=False)
+        
     if all_samples:
         combined_samples = pd.concat(all_samples, ignore_index=True)
     else:
         combined_samples = pd.DataFrame()
         
-    quality_df = pd.DataFrame(inventory)
-    if not quality_df.empty:
-        quality_df.to_csv(tables_dir / "siat_wak_join_quality.csv", index=False)
+    # Check Coverage
+    atlas_results = None
+    if not combined_samples.empty:
+        coverage_df = combined_samples.groupby("phase_interval")["subject_id"].nunique().reset_index()
+        coverage_df.rename(columns={"subject_id": "subject_count"}, inplace=True)
         
+        try:
+            validate_wak_atlas_coverage(coverage_df, min_subjects_per_phase=2)
+            atlas_results = build_siat_wak_reference_atlas(combined_samples)
+        except ValueError as e:
+            print(f"Skipping atlas generation due to coverage failure: {e}")
+            atlas_results = None
+            
     # Generate actual atlas output based on the joined samples
-    atlas_results = build_siat_wak_reference_atlas(combined_samples)
-    
-    # Save the actual computed results (or empty DataFrames if no data)
-    atlas_results["siat_wak_emg_phase_summary"].to_csv(tables_dir / "siat_wak_emg_phase_summary.csv", index=False)
-    atlas_results["siat_wak_peak_timing"].to_csv(tables_dir / "siat_wak_peak_timing.csv", index=False)
-    atlas_results["siat_wak_emg_torque_lag"].to_csv(tables_dir / "siat_wak_emg_torque_lag.csv", index=False)
+    if atlas_results is not None:
+        atlas_results["siat_wak_emg_phase_summary"].to_csv(tables_dir / "siat_wak_emg_phase_summary.csv", index=False)
+        atlas_results["siat_wak_peak_timing"].to_csv(tables_dir / "siat_wak_peak_timing.csv", index=False)
+        atlas_results["siat_wak_emg_torque_lag"].to_csv(tables_dir / "siat_wak_emg_torque_lag.csv", index=False)
+    else:
+        pd.DataFrame().to_csv(tables_dir / "siat_wak_emg_phase_summary.csv", index=False)
+        pd.DataFrame().to_csv(tables_dir / "siat_wak_peak_timing.csv", index=False)
+        pd.DataFrame().to_csv(tables_dir / "siat_wak_emg_torque_lag.csv", index=False)
     
     # Remaining required artifacts
     pd.DataFrame().to_csv(tables_dir / "siat_wak_data_schema.csv", index=False)
