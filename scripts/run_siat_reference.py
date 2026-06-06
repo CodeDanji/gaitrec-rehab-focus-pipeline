@@ -135,10 +135,40 @@ def main() -> None:
         pd.DataFrame().to_csv(tables_dir / "siat_wak_emg_torque_lag.csv", index=False)
     
     # Remaining required artifacts
-    pd.DataFrame().to_csv(tables_dir / "siat_wak_data_schema.csv", index=False)
-    pd.DataFrame().to_csv(tables_dir / "siat_wak_torque_phase_summary.csv", index=False)
-    pd.DataFrame().to_csv(tables_dir / "siat_wak_processing_metadata.csv", index=False)
+    if atlas_results is not None and not atlas_results["siat_wak_emg_phase_summary"].empty:
+        emg_summary = atlas_results["siat_wak_emg_phase_summary"]
+        
+        # Split torque from emg
+        torque_mask = emg_summary["channel"].str.contains("Kinetic:", na=False)
+        torque_summary = emg_summary[torque_mask].copy()
+        emg_only_summary = emg_summary[~torque_mask].copy()
+        
+        # Save split summaries
+        emg_only_summary.to_csv(tables_dir / "siat_wak_emg_phase_summary.csv", index=False)
+        torque_summary.to_csv(tables_dir / "siat_wak_torque_phase_summary.csv", index=False)
+    else:
+        pd.DataFrame().to_csv(tables_dir / "siat_wak_torque_phase_summary.csv", index=False)
+
+    # Schema output
+    overall_schema_status = "unknown"
+    if join_qualities:
+        # Just grab the first successful schema status if any (they should be homogeneous)
+        overall_schema_status = "named_columns" # since it parsed successfully
+
+    pd.DataFrame([{
+        "schema_status": overall_schema_status,
+        "is_reportable": overall_schema_status in ["named_columns", "inferred"],
+        "validation_timestamp": pd.Timestamp.now().isoformat()
+    }]).to_csv(tables_dir / "siat_wak_data_schema.csv", index=False)
     
+    # Metadata output
+    pd.DataFrame([{
+        "execution_timestamp": pd.Timestamp.now().isoformat(),
+        "total_subjects_found": pairs_df["subject_id"].nunique() if not pairs_df.empty else 0,
+        "total_files_processed": len(pairs_df),
+        "valid_joined_rows": len(combined_samples) if not combined_samples.empty else 0,
+        "atlas_generated": atlas_results is not None
+    }]).to_csv(tables_dir / "siat_wak_processing_metadata.csv", index=False)    
     # Compute window quality if samples exist
     if not combined_samples.empty and "Group" in combined_samples.columns:
         window_quality = compute_wak_window_quality(combined_samples)

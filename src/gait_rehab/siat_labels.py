@@ -1,4 +1,4 @@
-﻿import pandas as pd
+import pandas as pd
 from dataclasses import dataclass
 from pathlib import Path
 import numpy as np
@@ -60,6 +60,8 @@ def join_wak_data_and_labels(data: pd.DataFrame, labels: pd.DataFrame, subject_i
     
     # Map valid rows
     joined_valid = joined[valid_mask].copy()
+    joined_valid["subject_id"] = subject_id
+    joined_valid["trial_id"] = trial_id
     joined_valid["phase_interval"] = joined_valid["Status"].map(lambda x: map_wak_status(int(x)).phase_interval)
     joined_valid["functional_phase"] = joined_valid["Status"].map(lambda x: map_wak_status(int(x)).functional_phase)
     
