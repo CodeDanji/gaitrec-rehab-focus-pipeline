@@ -28,7 +28,7 @@ def compute_class_weights(y, num_classes):
     weights = len(y) / (num_classes * counts)
     return torch.FloatTensor(weights)
 
-def train_and_eval_ensemble(df, unique_labels, label_map, subjects, rf_feature_cols, X_rf, y_rf, device, logger, apply_weights=False):
+def train_and_eval_ensemble(df, unique_labels, label_map, subjects, rf_feature_cols, X_rf, y_rf, device, logger, apply_weights=False, rf_weight=0.5, cnn_weight=0.5):
     gkf = GroupKFold(n_splits=5)
     
     all_ensemble_preds = []
@@ -112,7 +112,7 @@ def train_and_eval_ensemble(df, unique_labels, label_map, subjects, rf_feature_c
         cnn_probs = np.concatenate(cnn_probs_list, axis=0)
         
         # 3. Soft Ensemble
-        ensemble_probs = (rf_probs + cnn_probs) / 2.0
+        ensemble_probs = (rf_probs * rf_weight + cnn_probs * cnn_weight)
         ensemble_preds = np.argmax(ensemble_probs, axis=1)
         
         all_ensemble_preds.extend(ensemble_preds)
@@ -132,7 +132,7 @@ def train_and_eval_ensemble(df, unique_labels, label_map, subjects, rf_feature_c
     
     return all_trues, all_ensemble_preds, f1_ensemble, models_rf, models_cnn, val_datasets
 
-def calculate_importance(models_rf, models_cnn, val_datasets, rf_feature_cols, unique_labels, device, logger):
+def calculate_importance(models_rf, models_cnn, val_datasets, rf_feature_cols, unique_labels, device, logger, rf_weight=0.5, cnn_weight=0.5):
     logger.info("\n--- Calculating Permutation / Ablation Importance ---")
     
     # 1. Baseline F1 across all validation sets
@@ -155,7 +155,7 @@ def calculate_importance(models_rf, models_cnn, val_datasets, rf_feature_cols, u
                 cnn_probs_list.append(probs)
         cnn_probs = np.concatenate(cnn_probs_list, axis=0)
         
-        ensemble_probs = (rf_probs + cnn_probs) / 2.0
+        ensemble_probs = (rf_probs * rf_weight + cnn_probs * cnn_weight)
         all_baseline_preds.extend(np.argmax(ensemble_probs, axis=1))
         all_trues.extend(y_val_rf)
         
@@ -193,7 +193,7 @@ def calculate_importance(models_rf, models_cnn, val_datasets, rf_feature_cols, u
                     cnn_probs_list.append(probs)
             cnn_probs = np.concatenate(cnn_probs_list, axis=0)
             
-            ensemble_probs = (rf_probs + cnn_probs) / 2.0
+            ensemble_probs = (rf_probs * rf_weight + cnn_probs * cnn_weight)
             all_perm_preds.extend(np.argmax(ensemble_probs, axis=1))
             
         perm_f1 = f1_score(all_trues, all_perm_preds, average='macro')
@@ -231,7 +231,7 @@ def calculate_importance(models_rf, models_cnn, val_datasets, rf_feature_cols, u
                     cnn_probs_list.append(probs)
             cnn_probs = np.concatenate(cnn_probs_list, axis=0)
             
-            ensemble_probs = (rf_probs + cnn_probs) / 2.0
+            ensemble_probs = (rf_probs * rf_weight + cnn_probs * cnn_weight)
             all_abl_preds.extend(np.argmax(ensemble_probs, axis=1))
             
         abl_f1 = f1_score(all_trues, all_abl_preds, average='macro')
@@ -283,7 +283,7 @@ def main():
     subjects_s1 = df_s1["subject_id"].values
     
     trues_s1, preds_s1, f1_s1, models_rf_s1, models_cnn_s1, val_datasets_s1 = train_and_eval_ensemble(
-        df_s1, unique_labels_s1, label_map_s1, subjects_s1, rf_feature_cols, X_rf_s1, y_rf_s1, device, logger, apply_weights=False
+        df_s1, unique_labels_s1, label_map_s1, subjects_s1, rf_feature_cols, X_rf_s1, y_rf_s1, device, logger, apply_weights=False, rf_weight=0.5, cnn_weight=0.5
     )
     
     cm_s1 = confusion_matrix(trues_s1, preds_s1)
@@ -300,7 +300,7 @@ def main():
     
     # Feature Importance for Stage 1
     logger.info("\n========== STAGE 1: Feature Importance ==========")
-    imp_df_s1 = calculate_importance(models_rf_s1, models_cnn_s1, val_datasets_s1, rf_feature_cols, unique_labels_s1, device, logger)
+    imp_df_s1 = calculate_importance(models_rf_s1, models_cnn_s1, val_datasets_s1, rf_feature_cols, unique_labels_s1, device, logger, rf_weight=0.5, cnn_weight=0.5)
     imp_df_s1 = imp_df_s1.sort_values(by='F1_Drop', ascending=False)
     imp_df_s1.to_csv(out_dir / "s1_upper_lower_importance.csv", index=False)
     
@@ -326,9 +326,8 @@ def main():
     y_rf_s2 = np.array([label_map_s2[lbl] for lbl in df_s2["label"].values])
     subjects_s2 = df_s2["subject_id"].values
     
-    # Enable class weights for CNN because of Hip/Knee imbalance
     trues_s2, preds_s2, f1_s2, models_rf_s2, models_cnn_s2, val_datasets_s2 = train_and_eval_ensemble(
-        df_s2, unique_labels_s2, label_map_s2, subjects_s2, rf_feature_cols, X_rf_s2, y_rf_s2, device, logger, apply_weights=True
+        df_s2, unique_labels_s2, label_map_s2, subjects_s2, rf_feature_cols, X_rf_s2, y_rf_s2, device, logger, apply_weights=True, rf_weight=0.8, cnn_weight=0.2
     )
     
     cm_s2 = confusion_matrix(trues_s2, preds_s2)
@@ -346,7 +345,7 @@ def main():
     # ==========================================
     # STAGE 3: Feature Importance (Hip vs Knee)
     # ==========================================
-    imp_df = calculate_importance(models_rf_s2, models_cnn_s2, val_datasets_s2, rf_feature_cols, unique_labels_s2, device, logger)
+    imp_df = calculate_importance(models_rf_s2, models_cnn_s2, val_datasets_s2, rf_feature_cols, unique_labels_s2, device, logger, rf_weight=0.8, cnn_weight=0.2)
     imp_df = imp_df.sort_values(by='F1_Drop', ascending=False)
     imp_df.to_csv(out_dir / "s2_hip_knee_importance.csv", index=False)
     
@@ -358,6 +357,50 @@ def main():
     plt.savefig(out_dir / "s2_hip_knee_importance.svg")
     plt.close()
     
+    # ==========================================
+    # STAGE 3: Ankle vs Calcaneus (Lower Subclass)
+    # ==========================================
+    logger.info("\n========== STAGE 3: Ankle vs Calcaneus (Lower Subclass) ==========")
+    df_s3 = df[df['label'].isin(['Ankle', 'Calcaneus'])].copy()
+    
+    unique_labels_s3 = sorted(df_s3["label"].unique().tolist())
+    label_map_s3 = {lbl: i for i, lbl in enumerate(unique_labels_s3)}
+    logger.info(f"Stage 3 Label Map: {label_map_s3}")
+    
+    X_rf_s3 = df_s3[rf_feature_cols].values
+    y_rf_s3 = np.array([label_map_s3[lbl] for lbl in df_s3["label"].values])
+    subjects_s3 = df_s3["subject_id"].values
+    
+    trues_s3, preds_s3, f1_s3, models_rf_s3, models_cnn_s3, val_datasets_s3 = train_and_eval_ensemble(
+        df_s3, unique_labels_s3, label_map_s3, subjects_s3, rf_feature_cols, X_rf_s3, y_rf_s3, device, logger, apply_weights=True, rf_weight=0.7, cnn_weight=0.3
+    )
+    
+    cm_s3 = confusion_matrix(trues_s3, preds_s3)
+    cm_df_s3 = pd.DataFrame(cm_s3, index=unique_labels_s3, columns=unique_labels_s3)
+    cm_df_s3.index.name = "true_label"
+    plt.figure(figsize=(6, 4))
+    sns.heatmap(cm_df_s3, annot=True, fmt='d', cmap='Greens')
+    plt.ylabel('True Label')
+    plt.xlabel('Predicted Label')
+    plt.title(f'Ankle vs Calcaneus Confusion Matrix (F1: {f1_s3:.2f})')
+    plt.tight_layout()
+    plt.savefig(out_dir / "s3_ankle_calcaneus_cm.svg")
+    plt.close()
+    
+    # Feature Importance for Stage 3
+    logger.info("\n========== STAGE 3: Feature Importance ==========")
+    imp_df_s3 = calculate_importance(models_rf_s3, models_cnn_s3, val_datasets_s3, rf_feature_cols, unique_labels_s3, device, logger, rf_weight=0.7, cnn_weight=0.3)
+    imp_df_s3 = imp_df_s3.sort_values(by='F1_Drop', ascending=False)
+    imp_df_s3.to_csv(out_dir / "s3_ankle_calcaneus_importance.csv", index=False)
+    
+    plt.figure(figsize=(10, 6))
+    sns.barplot(data=imp_df_s3, x='F1_Drop', y='Feature', hue='Type', dodge=False)
+    plt.title('Soft Ensemble Feature Importance (Ankle vs Calcaneus)')
+    plt.xlabel('Macro F1 Drop (Baseline - Permuted)')
+    plt.tight_layout()
+    plt.savefig(out_dir / "s3_ankle_calcaneus_importance.svg")
+    plt.close()
+
     logger.info(f"\nAll results saved to {out_dir}")
 
 if __name__ == "__main__":
